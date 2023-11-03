@@ -21,6 +21,8 @@ const Profile: React.FC<Props> = ({ onClose }) => {
       backgroundColor: "transparent",
       transition: { staggerChildren: 0.2, type: "tween" },
     },
+    exit: {
+      opacity: 0}
   };
 
   const item = {
@@ -92,6 +94,7 @@ const Profile: React.FC<Props> = ({ onClose }) => {
         variants={variants}
         initial="initial"
         animate="animate"
+exit="exit"
         className={classes.body}
       >
         <motion.li
