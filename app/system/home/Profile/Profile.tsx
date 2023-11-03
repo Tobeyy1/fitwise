@@ -98,6 +98,7 @@ const Profile: React.FC<Props> = ({ onClose }) => {
           key={"details"}
           variants={item}
           transition={{ type: "tween", delay: 0.7 }}
+          exit={{ opacity: 0, y: 100 }}
           className={classes.details}
         >
           <div className={classes.detail} id={classes.height}>
@@ -120,6 +121,7 @@ const Profile: React.FC<Props> = ({ onClose }) => {
         <motion.li
           key={"package__details"}
           variants={item}
+          exit={{ opacity: 0, y: 100 }}
           transition={{ type: "tween", delay: 0.8 }}
           className={classes.package__details}
         >
@@ -136,6 +138,7 @@ const Profile: React.FC<Props> = ({ onClose }) => {
           key={"Qr Code"}
           variants={item}
           transition={{ type: "tween", delay: 0.9 }}
+          exit={{ opacity: 0, y: 100 }}
           className={classes.qr__code}
         >
           <h3>Display Qr Code</h3>
@@ -147,6 +150,7 @@ const Profile: React.FC<Props> = ({ onClose }) => {
           key={"Settings"}
           variants={item}
           transition={{ type: "tween", delay: 1 }}
+          exit={{ opacity: 0, y: 100 }}
           className={classes.settings}
         >
           <div className={classes.setting} id={classes.password}>
