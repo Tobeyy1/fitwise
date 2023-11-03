@@ -3,7 +3,7 @@ import classes from "./Addons.module.scss";
 import { motion } from "framer-motion";
 
 interface Props {
-  onConfirm: (value: number) => void;
+  onConfirm: (value: FormDataEntryValue | null) => void;
 }
 
 const BottleOfWaterModal: React.FC<Props> = ({ onConfirm }) => {
