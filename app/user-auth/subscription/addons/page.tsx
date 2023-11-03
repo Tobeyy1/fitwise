@@ -11,7 +11,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import { useRouter } from "next/navigation";
 
 type AddOnDetailsType = {
-  numberofBottles: string | number;
+  numberofBottles: string | number | FormDataEntryValue | null;
   trainingRegimen: string;
   dietPlan: string;
 };
@@ -28,7 +28,7 @@ const Addons = () => {
 
   const router = useRouter();
 
-  const bottleOfWaterHandler = (numberOfBottles: number) => {
+  const bottleOfWaterHandler = (numberOfBottles: FormDataEntryValue | null) => {
     setAddOnDetails({
       ...addOnDetails,
       numberofBottles: numberOfBottles,
