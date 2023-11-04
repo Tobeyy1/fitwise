@@ -14,10 +14,12 @@ const Welcome = () => {
         <video
           src={videoURL}
           autoPlay
+          muted
           loop
           // width={window.innerWidth}
           // height={window.innerHeight}
           typeof="video/mp4"
+          preload="auto"
         />
       </div>
       <h1>FitWise</h1>
