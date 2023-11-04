@@ -48,6 +48,10 @@ ul {
   list-style: none;
 }
 
+video::-webkit-media-controls {
+  display: none;
+}
+
 @media (prefers-color-scheme: dark) {
   html {
     color-scheme: dark;
