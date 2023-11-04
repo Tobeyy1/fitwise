@@ -12,16 +12,17 @@ const Welcome = () => {
     <div className={classes.container}>
       <div className={classes.video__container}>
         <video
-          src={videoURL}
           autoPlay
           muted
           loop
           // width={window.innerWidth}
           // height={window.innerHeight}
-          typeof="video/mp4"
+
           preload="auto"
           playsInline
-        />
+        >
+          <source src={videoURL} type="video/mp4" />
+        </video>
       </div>
       <h1>FitWise</h1>
       <Link href="/onboarding">
