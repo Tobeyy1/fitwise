@@ -20,6 +20,7 @@ const Welcome = () => {
           // height={window.innerHeight}
           typeof="video/mp4"
           preload="auto"
+          playsInline
         />
       </div>
       <h1>FitWise</h1>
