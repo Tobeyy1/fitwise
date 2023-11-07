@@ -137,6 +137,23 @@
   }
 }
 
+.theme {
+  width: 100%;
+  padding: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: var(--bg-200);
+  border-radius: 12px;
+
+  span {
+    * {
+      font-size: clamp(1.5rem, 3vw, 3rem);
+      color: var(--accent-100);
+    }
+  }
+}
+
 .settings {
   display: flex;
   gap: 1rem;

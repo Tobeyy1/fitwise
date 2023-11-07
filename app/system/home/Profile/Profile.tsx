@@ -5,14 +5,34 @@ import AVATAR from "../../../assets/images/avatar.png";
 import { AiOutlineClose } from "react-icons/ai";
 import { BsQrCodeScan } from "react-icons/bs";
 import { MdPassword } from "react-icons/md";
-import { TbLogout2 } from "react-icons/tb";
+import { TbLogout2, TbMoonFilled } from "react-icons/tb";
 import { motion } from "framer-motion";
+import { useDispatch, useSelector } from "react-redux";
+import { themeActions } from "@/app/store/store";
 
 interface Props {
   onClose: (value: boolean) => void;
 }
 
+interface ThemeState {
+  theme: string;
+}
+
 const Profile: React.FC<Props> = ({ onClose }) => {
+  const theme = useSelector((state: any) => state.theme.theme);
+
+  const dispatch = useDispatch();
+  const themeHandler = () => {
+    let newTheme = theme;
+    if (theme === "dark") {
+      newTheme = "light";
+    }
+    if (theme === "light") {
+      newTheme = "dark";
+    }
+    dispatch(themeActions.setTheme(newTheme));
+    localStorage.setItem("theme", newTheme);
+  };
   const variants = {
     initial: {
       backgroundColor: "transparent",
@@ -22,7 +42,8 @@ const Profile: React.FC<Props> = ({ onClose }) => {
       transition: { staggerChildren: 0.2, type: "tween" },
     },
     exit: {
-      opacity: 0}
+      opacity: 0,
+    },
   };
 
   const item = {
@@ -32,7 +53,7 @@ const Profile: React.FC<Props> = ({ onClose }) => {
     whileHover: { opacity: 0.5 },
   };
   return (
-    <div className={classes.container}>
+    <motion.div exit={{ opacity: 0 }} className={classes.container}>
       <motion.span
         initial={{ rotate: -90, opacity: 0, scale: 2.25 }}
         animate={{ rotate: 0, opacity: 1, scale: 1 }}
@@ -94,7 +115,7 @@ const Profile: React.FC<Props> = ({ onClose }) => {
         variants={variants}
         initial="initial"
         animate="animate"
-exit="exit"
+        exit="exit"
         className={classes.body}
       >
         <motion.li
@@ -150,6 +171,19 @@ exit="exit"
           </span>
         </motion.li>
         <motion.li
+          key={"Theme"}
+          variants={item}
+          transition={{ type: "tween", delay: 1 }}
+          exit={{ opacity: 0, y: 100 }}
+          className={classes.theme}
+          onClick={themeHandler}
+        >
+          <h3>{theme === "dark" ? "Dark" : "Light"}</h3>{" "}
+          <span>
+            <TbMoonFilled />
+          </span>
+        </motion.li>
+        <motion.li
           key={"Settings"}
           variants={item}
           transition={{ type: "tween", delay: 1 }}
@@ -170,7 +204,7 @@ exit="exit"
           </div>
         </motion.li>
       </motion.ul>
-    </div>
+    </motion.div>
   );
 };
 

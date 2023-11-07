@@ -2,6 +2,7 @@
   height: 100dvh;
   display: flex;
   flex-direction: column;
+  background-color: var(--bg-100);
 
   & > div {
     flex: 1;

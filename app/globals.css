@@ -12,7 +12,7 @@ body {
   background-color: var(--bg-100);
 }
 
-:root {
+.dark {
   --primary-100: #0085ff;
   --primary-200: #69b4ff;
   --primary-300: #e0ffff;
@@ -26,7 +26,7 @@ body {
   --transition-normal: all 250ms ease-in-out;
 }
 
-/* :root {
+.light {
   --primary-100: #0077c2;
   --primary-200: #59a5f5;
   --primary-300: #c8ffff;
@@ -37,7 +37,8 @@ body {
   --bg-100: #ffffff;
   --bg-200: #e8e7e7;
   --bg-300: #cccccc;
-} */
+  --transition-normal: all 250ms ease-in-out;
+}
 
 a {
   color: inherit;
@@ -52,8 +53,8 @@ video::-webkit-media-controls {
   display: none;
 }
 
-@media (prefers-color-scheme: dark) {
+/* @media (prefers-color-scheme: dark) {
   html {
     color-scheme: dark;
   }
-}
+} */
