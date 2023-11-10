@@ -21,7 +21,7 @@ const AppWrapper: React.FC<Props> = ({ children }) => {
     if (!userTheme) return;
 
     dispatch(themeActions.setTheme(userTheme));
-  }, []);
+  }, [dispatch]);
 
   return (
     <main
