@@ -82,6 +82,7 @@
   position: relative;
   width: 11rem;
   border: 1px solid var(--bg-200);
+  text-transform: capitalize;
 }
 
 .filter__list {
@@ -178,5 +179,16 @@
   .amount {
     opacity: 0.6;
     font-size: 70%;
+  }
+}
+
+.specific__filter__container {
+  display: flex;
+  gap: 0.5rem;
+  padding: 1rem;
+  flex-wrap: wrap;
+
+  & > *:first-child {
+    margin: 0px;
   }
 }

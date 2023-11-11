@@ -11,6 +11,7 @@ import Link from "next/link";
 import Image from "next/image";
 import TRAINER from "../../assets/images/nike-trainer.jpg";
 import AllItemsRow from "./AllItemsRow";
+import SpecificFilterDisplay from "./SpecificFilterDisplay";
 
 const filters = [
   "all",
@@ -100,9 +101,15 @@ const Shop = () => {
         </span>
       </section>
       <section className={classes.body}>
-        {filters.map((section: string) => {
-          if (section !== "all") return <AllItemsRow header={section} />;
-        })}
+        {currentFilter === "all" ? (
+          <>
+            {filters.map((section: string) => {
+              if (section !== "all") return <AllItemsRow header={section} />;
+            })}
+          </>
+        ) : (
+          <SpecificFilterDisplay filter={currentFilter} />
+        )}
       </section>
     </div>
   );

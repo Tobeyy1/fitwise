@@ -28,7 +28,9 @@ const Home = () => {
           />
         </div>
       </section>
-      <section className={classes.home__body}>Body</section>
+      <section className={classes.home__body}>
+        I haven&apos;t done this page yet. Check the other pages
+      </section>
     </div>
   );
 };

@@ -3,6 +3,7 @@ import classes from "./shop.module.scss";
 import Link from "next/link";
 import Image from "next/image";
 import Item from "./Item";
+import { motion } from "framer-motion";
 import { MdOutlineKeyboardArrowRight } from "react-icons/md";
 
 interface Props {
@@ -10,7 +11,12 @@ interface Props {
 }
 const AllItemsRow: React.FC<Props> = ({ header }) => {
   return (
-    <div className={classes.item__row__container}>
+    <motion.div
+      initial={{ y: 100, opacity: 0 }}
+      animate={{ y: 0, opacity: 1 }}
+      transition={{ type: "tween" }}
+      className={classes.item__row__container}
+    >
       <div className={classes.top__row}>
         <h3>{header}</h3>
 
@@ -26,7 +32,7 @@ const AllItemsRow: React.FC<Props> = ({ header }) => {
           <MdOutlineKeyboardArrowRight />
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 };
 
