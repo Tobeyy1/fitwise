@@ -160,13 +160,14 @@
   align-items: center;
   padding-bottom: 0.5rem;
   min-width: 150px;
+  width: 30vw;
 
   &:first-child {
     margin-left: 1rem;
   }
 
   .image__container {
-    width: 30vw;
+    width: 100%
     aspect-ratio: 1;
     position: relative;
     .image {
