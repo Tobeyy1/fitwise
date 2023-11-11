@@ -6,6 +6,11 @@ import GenderSelect from "./GenderSelect";
 import { AnimatePresence } from "framer-motion";
 import { IoIosArrowDown } from "react-icons/io";
 import { HiShoppingCart } from "react-icons/hi";
+import { motion } from "framer-motion";
+import Link from "next/link";
+import Image from "next/image";
+import TRAINER from "../../assets/images/nike-trainer.jpg";
+import AllItemsRow from "./AllItemsRow";
 
 const filters = [
   "All",
@@ -30,6 +35,26 @@ const Shop = () => {
     );
   }
 
+  const variants = {
+    initial: {
+      backgroundColor: "transparent",
+    },
+    animate: {
+      backgroundColor: "transparent",
+      transition: { staggerChildren: 0.1, type: "tween" },
+    },
+    exit: {
+      opacity: 0,
+    },
+  };
+
+  const item = {
+    initial: { opacity: 0, y: "-100%" },
+    animate: { opacity: 1, y: 0 },
+    exit: { opacity: 0, y: "-100%" },
+    whileHover: { opacity: 0.5 },
+  };
+
   return (
     <div className={classes.container}>
       <section className={classes.top__bar}>
@@ -41,28 +66,43 @@ const Shop = () => {
           <span className={classes.icon}>
             <IoIosArrowDown />
           </span>
-          {isMenuVisible && (
-            <ul className={classes.filter__list}>
-              {filters.map((filter: string) => {
-                if (filter !== currentFilter)
-                  return (
-                    <li
-                      onClick={() => {
-                        setCurrentFilter(filter);
-                        setIsMenuVisible(false);
-                      }}
-                      key={filter}
-                    >
-                      {filter}
-                    </li>
-                  );
-              })}
-            </ul>
-          )}
+          <AnimatePresence>
+            {isMenuVisible && (
+              <motion.ul
+                className={classes.filter__list}
+                variants={variants}
+                initial="initial"
+                animate="animate"
+                exit={"exit"}
+              >
+                {filters.map((filter: string) => {
+                  if (filter !== currentFilter)
+                    return (
+                      <motion.li
+                        variants={item}
+                        transition={{ type: "tween" }}
+                        onClick={() => {
+                          setCurrentFilter(filter);
+                          setIsMenuVisible(false);
+                        }}
+                        key={filter}
+                      >
+                        {filter}
+                      </motion.li>
+                    );
+                })}
+              </motion.ul>
+            )}
+          </AnimatePresence>
         </div>
         <span className={classes.icon}>
           <HiShoppingCart />
         </span>
+      </section>
+      <section className={classes.body}>
+        <AllItemsRow />
+        <AllItemsRow />
+        <AllItemsRow />
       </section>
     </div>
   );
