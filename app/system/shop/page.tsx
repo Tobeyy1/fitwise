@@ -13,13 +13,13 @@ import TRAINER from "../../assets/images/nike-trainer.jpg";
 import AllItemsRow from "./AllItemsRow";
 
 const filters = [
-  "All",
-  "Tops",
-  "Shorts",
-  "Gloves",
-  "Trainers",
-  "Tracksuits",
-  "Supplements",
+  "all",
+  "tops",
+  "shorts",
+  "gloves",
+  "trainers",
+  "tracksuits",
+  "supplements",
 ];
 
 const Shop = () => {
@@ -100,9 +100,9 @@ const Shop = () => {
         </span>
       </section>
       <section className={classes.body}>
-        <AllItemsRow />
-        <AllItemsRow />
-        <AllItemsRow />
+        {filters.map((section: string) => {
+          if (section !== "all") return <AllItemsRow header={section} />;
+        })}
       </section>
     </div>
   );

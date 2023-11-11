@@ -118,6 +118,7 @@
     align-items: center;
     justify-content: space-between;
     padding-inline: 1rem;
+    text-transform: capitalize;
 
     a {
       font-size: 75%;
@@ -167,7 +168,7 @@
   }
 
   .image__container {
-    width: 100%
+    width: 100%;
     aspect-ratio: 1;
     position: relative;
     .image {
