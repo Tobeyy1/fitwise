@@ -104,7 +104,13 @@ const Shop = () => {
         {currentFilter === "all" ? (
           <>
             {filters.map((section: string) => {
-              if (section !== "all") return <AllItemsRow header={section} />;
+              if (section !== "all")
+                return (
+                  <AllItemsRow
+                    header={section}
+                    seeAllHandler={setCurrentFilter}
+                  />
+                );
             })}
           </>
         ) : (

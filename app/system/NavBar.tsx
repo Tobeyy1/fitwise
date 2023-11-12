@@ -29,7 +29,7 @@ const NavBar = () => {
           <Link
             href="/system/shop"
             className={`${classes.link} ${
-              pathname === "/system/shop" ? classes.active__link : ""
+              pathname.includes("/system/shop") ? classes.active__link : ""
             }`}
           >
             <HiShoppingCart />

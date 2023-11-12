@@ -8,8 +8,9 @@ import { MdOutlineKeyboardArrowRight } from "react-icons/md";
 
 interface Props {
   header: string;
+  seeAllHandler: (value: string) => void;
 }
-const AllItemsRow: React.FC<Props> = ({ header }) => {
+const AllItemsRow: React.FC<Props> = ({ header, seeAllHandler }) => {
   return (
     <motion.div
       initial={{ y: 100, opacity: 0 }}
@@ -20,7 +21,7 @@ const AllItemsRow: React.FC<Props> = ({ header }) => {
       <div className={classes.top__row}>
         <h3>{header}</h3>
 
-        <Link href="#">See all</Link>
+        <button onClick={() => seeAllHandler(header)}>See all</button>
       </div>
       <div className={classes.items}>
         <Item />
@@ -28,9 +29,14 @@ const AllItemsRow: React.FC<Props> = ({ header }) => {
         <Item />
         <Item />
 
-        <div className={classes.see__all}>
+        <motion.button
+          initial={{ scale: 0, opacity: 0 }}
+          whileInView={{ scale: 1, opacity: 1 }}
+          className={classes.see__all}
+          onClick={() => seeAllHandler(header)}
+        >
           <MdOutlineKeyboardArrowRight />
-        </div>
+        </motion.button>
       </div>
     </motion.div>
   );

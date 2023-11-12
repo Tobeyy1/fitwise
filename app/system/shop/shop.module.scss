@@ -83,6 +83,7 @@
   width: 11rem;
   border: 1px solid var(--bg-200);
   text-transform: capitalize;
+  cursor: pointer;
 }
 
 .filter__list {
@@ -99,6 +100,11 @@
     padding-inline: 1rem;
     background-color: var(--bg-200);
     cursor: pointer;
+
+    &:hover {
+      transition: var(--transition-normal);
+      background-color: var(--bg-300);
+    }
   }
 }
 
@@ -121,9 +127,11 @@
     padding-inline: 1rem;
     text-transform: capitalize;
 
-    a {
-      font-size: 75%;
+    button {
+      font-size: 0.9rem;
       color: var(--accent-100);
+      background-color: var(--bg-100);
+      border: none;
     }
   }
 
@@ -144,6 +152,7 @@
       background-color: var(--accent-100);
       display: grid;
       place-content: center;
+      border: none;
       * {
         font-size: 1.5rem;
       }
@@ -187,6 +196,7 @@
   gap: 0.5rem;
   padding: 1rem;
   flex-wrap: wrap;
+  justify-content: center;
 
   & > *:first-child {
     margin: 0px;
