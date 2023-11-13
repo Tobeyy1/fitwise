@@ -1,11 +1,12 @@
 import React from "react";
 import classes from "./QRCode.module.scss";
 import QRCode from "qrcode.react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { qrCodeActions } from "@/app/store/store";
 import { motion } from "framer-motion";
 
 const QRCodeComponent = () => {
+  const theme = useSelector((state: any) => state.theme.theme);
   const dispatch = useDispatch();
 
   const onCloseHandler = () => {
@@ -27,7 +28,8 @@ const QRCodeComponent = () => {
         <QRCode
           value={"Hello, world!"}
           size={window.innerWidth - 72}
-          bgColor="#fff"
+          bgColor={theme === "dark" ? "#1e1e1e" : "#fff"}
+          fgColor={theme === "dark" ? "#fff" : "#1e1e1e"}
           level="L"
           // includeMargin={true}
         />

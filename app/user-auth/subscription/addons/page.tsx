@@ -37,7 +37,7 @@ const Addons = () => {
   };
 
   const submitHandler = () => {
-    router.push("/system/home ");
+    router.push("/user-auth/payment");
   };
 
   return (
