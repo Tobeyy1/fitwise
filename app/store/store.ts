@@ -4,6 +4,9 @@ import { configureStore, combineReducers } from "@reduxjs/toolkit";
 interface ThemeState {
   theme: string;
 }
+interface QRCodeState {
+  qrCode: boolean;
+}
 
 const themeSlice = createSlice({
   name: "theme",
@@ -16,10 +19,22 @@ const themeSlice = createSlice({
     },
   },
 });
+const qrCodeSlice = createSlice({
+  name: "qrCode",
+  initialState: {
+    qrCode: false,
+  } as QRCodeState,
+  reducers: {
+    setQRCode: (state, action: PayloadAction<boolean>) => {
+      state.qrCode = action.payload;
+    },
+  },
+});
 
 const rootReducer = combineReducers({
   //   playersData: playersDataSlice.reducer,
   theme: themeSlice.reducer,
+  qrCode: qrCodeSlice.reducer,
 });
 
 const store = configureStore({
@@ -27,4 +42,5 @@ const store = configureStore({
 });
 
 export const themeActions = themeSlice.actions;
+export const qrCodeActions = qrCodeSlice.actions;
 export default store;

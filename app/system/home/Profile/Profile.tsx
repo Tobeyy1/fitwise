@@ -6,9 +6,10 @@ import { AiOutlineClose } from "react-icons/ai";
 import { BsQrCodeScan } from "react-icons/bs";
 import { MdPassword } from "react-icons/md";
 import { TbLogout2, TbMoonFilled } from "react-icons/tb";
-import { motion } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 import { useDispatch, useSelector } from "react-redux";
-import { themeActions } from "@/app/store/store";
+import { qrCodeActions, themeActions } from "@/app/store/store";
+import QRCode from "@/app/components/QRCode/QRCode";
 
 interface Props {
   onClose: (value: boolean) => void;
@@ -20,7 +21,7 @@ interface ThemeState {
 
 const Profile: React.FC<Props> = ({ onClose }) => {
   const theme = useSelector((state: any) => state.theme.theme);
-
+  const showQRCode = useSelector((state: any) => state.qrCode.qrCode);
   const dispatch = useDispatch();
   const themeHandler = () => {
     let newTheme = theme;
@@ -54,6 +55,7 @@ const Profile: React.FC<Props> = ({ onClose }) => {
   };
   return (
     <motion.div exit={{ opacity: 0 }} className={classes.container}>
+      <AnimatePresence>{showQRCode && <QRCode />}</AnimatePresence>
       <motion.span
         initial={{ rotate: -90, opacity: 0, scale: 2.25 }}
         animate={{ rotate: 0, opacity: 1, scale: 1 }}
@@ -164,6 +166,7 @@ const Profile: React.FC<Props> = ({ onClose }) => {
           transition={{ type: "tween", delay: 0.9 }}
           exit={{ opacity: 0, y: 100 }}
           className={classes.qr__code}
+          onClick={() => dispatch(qrCodeActions.setQRCode(true))}
         >
           <h3>Display Qr Code</h3>
           <span>
