@@ -13,7 +13,7 @@ const FullScreenImage: React.FC<Props> = ({ imageSrc, onExit }) => {
     <motion.div
       initial={{ scale: 0, opacity: 0 }}
       animate={{ scale: 1, opacity: 1 }}
-      exit={{ scale: 0.5, opacity: 0 }}
+      exit={{ opacity: 0 }}
       transition={{ type: "tween" }}
       className={classes.fullscreen__container}
     >
