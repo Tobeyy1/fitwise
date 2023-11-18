@@ -10,6 +10,9 @@
   justify-content: space-between;
   padding: 1rem;
 
+  .intro__text {
+    font-weight: 500;
+  }
   .image__container {
     position: relative;
     height: 50px;
@@ -22,6 +25,161 @@
       object-fit: contain;
       height: 100%;
       width: 100%;
+    }
+  }
+}
+
+.home__body {
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.sign__ins__notification {
+  background-color: #1f766c;
+  background-color: var(--primary-100);
+  background-image: linear-gradient(
+    to bottom right,
+    var(--accent-100),
+    var(--primary-100),
+    var(--accent-100)
+  );
+  padding: 1rem;
+  border-radius: calc(12px + 1rem);
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 2rem;
+  .membership {
+    // align-self: flex-end;
+    background-color: var(--bg-200);
+    padding: 0.5rem;
+    border-radius: 12px;
+    font-size: 70%;
+  }
+  & > div {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 1rem;
+
+    h4 {
+      font-size: 150%;
+      font-weight: 500;
+      // max-width: 60%;
+    }
+  }
+  span {
+    background-color: var(--bg-200);
+    font-size: 300%;
+    height: 6rem;
+    aspect-ratio: 1;
+    display: grid;
+    place-content: center;
+    border-radius: 50%;
+    border: 2px solid var(--text-100);
+  }
+}
+// TRAINING AD
+
+.training {
+  display: flex;
+  background-color: var(--bg-200);
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem;
+  border: 1px solid var(--bg-300);
+  border-radius: calc(12px + 1rem);
+  h4 {
+    font-size: 150%;
+    font-weight: 500;
+    // max-width: 60%;
+  }
+
+  .sub__text {
+    opacity: 70%;
+  }
+
+  .icon {
+    background-color: var(--accent-100);
+    background-image: linear-gradient(
+      to bottom right,
+      var(--accent-100),
+      var(--primary-100),
+      var(--accent-100)
+    );
+    height: 4rem;
+    aspect-ratio: 1;
+    display: grid;
+    place-content: center;
+    border-radius: 50%;
+    font-size: 200%;
+    * {
+      color: var(--bg-100);
+    }
+  }
+}
+// USER DATA
+
+.user__data__container {
+  display: flex;
+  gap: 2rem;
+  & > div {
+    flex: 1;
+    height: 100%;
+    border-radius: calc(12px + 1rem);
+    padding: 1rem;
+    // background-color: var(--bg-200);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: 1px solid var(--accent-100);
+    .icon {
+      font-size: 200%;
+      * {
+        color: var(--accent-100);
+      }
+    }
+    h4 {
+      // font-size: 150%;
+      font-weight: 500;
+      // max-width: 60%;
+    }
+  }
+}
+// DIET AD
+
+.diet {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem;
+  background-color: var(--bg-200);
+  border-radius: calc(12px + 1rem);
+  border: 1px solid var(--bg-300);
+  h4 {
+    font-size: 150%;
+    font-weight: 500;
+    // max-width: 60%;
+  }
+  .icon {
+    background-color: var(--accent-100);
+    background-image: linear-gradient(
+      to bottom right,
+      var(--accent-100),
+      var(--primary-100),
+      var(--accent-100)
+    );
+    height: 3rem;
+    aspect-ratio: 1;
+    display: grid;
+    place-content: center;
+    border-radius: 50%;
+    font-size: 200%;
+    * {
+      color: var(--bg-100);
     }
   }
 }

@@ -5,14 +5,51 @@
   width: 100vw;
   height: 100dvh;
   background-color: var(--bg-100);
-  z-index: 10;
+  z-index: 100;
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.tip {
+  position: absolute;
+  top: 1rem;
+  width: calc(100% - 2rem);
+  background-color: var(--bg-100);
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  border: 1px solid var(--accent-200);
+  padding: 0.5rem 1rem;
+  border-radius: 12px;
+  box-shadow: 0px 0px 8px 1px var(--accent-200);
+
+  .icon {
+    font-size: 1.5rem;
+    display: grid;
+    place-content: center;
+    height: 100%;
+    aspect-ratio: 1;
+
+    * {
+      color: var(--accent-100);
+    }
+  }
 
   & > div {
-    background: var(--bg-100);
-    padding: 1rem;
-    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    gap: 1ch;
+    color: var(--accent-100);
   }
+
+  p {
+    font-size: 0.9rem;
+  }
+}
+
+.qr__container {
+  background: var(--bg-100);
+  padding: 1rem;
+  border-radius: 4px;
 }

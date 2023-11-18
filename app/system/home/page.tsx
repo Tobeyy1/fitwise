@@ -6,6 +6,10 @@ import Image from "next/image";
 import AVATAR from "../../assets/images/avatar.png";
 import Profile from "./Profile/Profile";
 import { AnimatePresence } from "framer-motion";
+import { TbFileArrowRight } from "react-icons/tb";
+import { HiOutlineArrowRight } from "react-icons/hi";
+import { BiQrScan } from "react-icons/bi";
+import { BsGraphUp } from "react-icons/bs";
 
 const Home = () => {
   const [showProfile, setShowProfile] = useState<boolean>(false);
@@ -15,7 +19,7 @@ const Home = () => {
         {showProfile && <Profile onClose={setShowProfile} />}
       </AnimatePresence>
       <section className={classes.top__bar}>
-        <h2 className={classes.intro__text}>Hello, User</h2>
+        <h2 className={classes.intro__text}>Hello, Tobechukwu </h2>
         <div
           className={classes.image__container}
           onClick={() => setShowProfile(true)}
@@ -29,7 +33,53 @@ const Home = () => {
         </div>
       </section>
       <section className={classes.home__body}>
-        I haven&apos;t done this page yet. Check the other pages
+        <div className={classes.notification__section}>
+          <div className={classes.sign__ins__notification}>
+            <div>
+              <p className={classes.membership}>Weekend Warrior</p>{" "}
+              <h4 className={classes.description}>
+                Number Of Sign-Ins this Month
+              </h4>{" "}
+            </div>
+            <span>99</span>{" "}
+          </div>{" "}
+        </div>
+
+        {/* TRAINING AD */}
+        <div className={classes.training}>
+          <div className={classes.text__container}>
+            <p className={classes.sub__text}>It&apos;s Tuesday</p>{" "}
+            <h4 className={classes.main__text}>Train Chest</h4>{" "}
+          </div>{" "}
+          <span className={classes.icon}>
+            <HiOutlineArrowRight />{" "}
+          </span>{" "}
+        </div>
+
+        {/* USER DATA  */}
+        <div className={classes.user__data__container}>
+          <div className={classes.qr__code}>
+            <span className={classes.icon}>
+              <BiQrScan />
+            </span>
+            <h4>Qr Code</h4>
+          </div>
+          <div className={classes.progress}>
+            <span className={classes.icon}>
+              <BsGraphUp />
+            </span>
+            <h4>Track Progress</h4>
+          </div>
+        </div>
+
+        {/* DIET PLAN AD  */}
+
+        <div className={classes.diet}>
+          <h4>Eat this for Dinner</h4>
+          <span className={classes.icon}>
+            <HiOutlineArrowRight />{" "}
+          </span>{" "}
+        </div>
       </section>
     </div>
   );
