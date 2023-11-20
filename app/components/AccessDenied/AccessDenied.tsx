@@ -14,7 +14,7 @@ const AccessDenied = () => {
         <span className={classes.icon}>
           <HiLockClosed />
         </span>
-        <h3>You didn&apos;t subscribe to this section</h3>
+        <h3>You didn&apos;t subscribe to this package</h3>
         <button>SUBSCRIBE - N5000</button>
       </div>
     </div>

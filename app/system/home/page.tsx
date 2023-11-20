@@ -12,6 +12,8 @@ import { BsGraphUp } from "react-icons/bs";
 import { useDispatch } from "react-redux";
 import { qrCodeActions } from "@/app/store/store";
 import { useRouter } from "next/navigation";
+import WATERWAVE from "../../assets/images/water-wave.png";
+import DINNER from "../../assets/images/dinner.png";
 
 const Home = () => {
   const [showProfile, setShowProfile] = useState<boolean>(false);
@@ -41,15 +43,21 @@ const Home = () => {
       </section>
       <section className={classes.home__body}>
         <div className={classes.notification__section}>
-          <div className={classes.sign__ins__notification}>
+          <div className={classes.check__ins__notification}>
             <div>
               <p className={classes.membership}>Weekend Warrior</p>{" "}
               <h4 className={classes.description}>
-                Number Of Sign-Ins this Month
+                Number Of Check-Ins this Month
               </h4>{" "}
             </div>
             <span>99</span>{" "}
           </div>{" "}
+          <div className={classes.number__of__bottles}>
+            {" "}
+            <Image src={WATERWAVE} alt="Water" fill className={classes.image} />
+            <h4>Bottles Of Water Left</h4>
+            <span>99</span>
+          </div>
         </div>
 
         {/* TRAINING AD */}
@@ -92,6 +100,10 @@ const Home = () => {
             router.push("/system/diet");
           }}
         >
+          {" "}
+          <div className={classes.image__container}>
+            <Image src={DINNER} alt="Dinner" fill className={classes.image} />
+          </div>
           <h4>Eat this for Dinner</h4>
           <span className={classes.icon}>
             <HiOutlineArrowRight />{" "}
