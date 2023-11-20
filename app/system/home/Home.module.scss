@@ -2,6 +2,9 @@
   flex: 1;
   height: 100dvh;
   position: relative;
+  overflow: auto;
+  display: flex;
+  flex-direction: column;
 }
 
 .top__bar {
@@ -35,58 +38,32 @@
   flex-direction: column;
   align-items: center;
   gap: 2rem;
+  gap: clamp(1rem, 2vh, 2rem);
+  flex: 1;
+  // justify-content: space-around;
+  // background-color: red;
   & > div:not(.notification__section) {
     width: calc(100% - 2rem);
   }
 }
 
 .notification__section {
-  display: flex;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
   align-items: center;
   gap: 1rem;
   overflow: auto;
   width: 100vw;
   padding-inline: 1rem;
+  flex: 1;
+  max-height: 20rem;
   &::-webkit-scrollbar {
     display: none;
   }
 }
-.number__of__bottles {
-  min-width: calc(100vw - 4rem);
-  display: flex;
-  align-items: center;
-  background-color: var(--bg-100);
-  border: 1px solid var(--accent-100);
-  justify-content: space-between;
-  border-radius: calc(12px + 1rem);
-  height: 100%;
-  padding: 1rem;
-  position: relative;
-  overflow: hidden;
-  isolation: isolate;
-  .image {
-    object-fit: cover;
-    z-index: -1;
-  }
-  h4 {
-    font-size: 150%;
-    font-weight: 500;
-    // max-width: 60%;
-  }
-  span {
-    background-color: var(--accent-100);
-    font-size: 300%;
-    height: 6rem;
-    aspect-ratio: 1;
-    display: grid;
-    place-content: center;
-    border-radius: 50%;
-    border: 2px solid var(--accent-100);
-  }
-}
 
 .check__ins__notification {
-  background-color: #1f766c;
+  height: 100%;
   background-color: var(--primary-100);
   background-image: linear-gradient(
     to bottom right,
@@ -98,9 +75,10 @@
   border-radius: calc(12px + 1rem);
   display: flex;
   flex-direction: row;
+  justify-content: space-between;
   align-items: center;
   gap: 2rem;
-  min-width: calc(100vw - 4rem);
+  min-width: calc(100vw - 3rem);
   .membership {
     // align-self: flex-end;
     background-color: var(--bg-200);
@@ -130,6 +108,39 @@
     place-content: center;
     border-radius: 50%;
     border: 2px solid var(--text-100);
+  }
+}
+.number__of__bottles {
+  height: 100%;
+  min-width: calc(100vw - 3rem);
+  display: flex;
+  align-items: center;
+  background-color: var(--bg-100);
+  border: 1px solid var(--accent-100);
+  justify-content: space-between;
+  border-radius: calc(12px + 1rem);
+  padding: 1rem;
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+  .image {
+    object-fit: cover;
+    z-index: -1;
+  }
+  h4 {
+    font-size: 150%;
+    font-weight: 500;
+    // max-width: 60%;
+  }
+  span {
+    background-color: var(--accent-100);
+    font-size: 300%;
+    height: 6rem;
+    aspect-ratio: 1;
+    display: grid;
+    place-content: center;
+    border-radius: 50%;
+    border: 2px solid var(--accent-100);
   }
 }
 // TRAINING AD
@@ -175,7 +186,8 @@
 // USER DATA
 
 .user__data__container {
-  display: flex;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
   gap: 2rem;
   & > div {
     flex: 1;

@@ -46,9 +46,7 @@ const Home = () => {
           <div className={classes.check__ins__notification}>
             <div>
               <p className={classes.membership}>Weekend Warrior</p>{" "}
-              <h4 className={classes.description}>
-                Number Of Check-Ins this Month
-              </h4>{" "}
+              <h4 className={classes.description}>Check-Ins this Month</h4>{" "}
             </div>
             <span>99</span>{" "}
           </div>{" "}
