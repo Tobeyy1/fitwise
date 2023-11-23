@@ -1,18 +1,18 @@
 "use client";
 
 import React, { FormEvent, useState } from "react";
-import classes from "./register.module.scss";
+import classes from "./login.module.scss";
 import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
 import { BiSolidRightArrow } from "react-icons/bi";
 import { useRouter } from "next/navigation";
 import { motion } from "framer-motion";
 
-const RegisterForm = () => {
+const LoginForm = () => {
   const [isPasswordVisible, setIsPasswordVisible] = useState<boolean>(false);
   const router = useRouter();
   const submitHandler = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    router.push("/user-auth/subscription");
+    router.push("/admin/home");
   };
   return (
     <form className={classes.form} onSubmit={submitHandler}>
@@ -25,39 +25,8 @@ const RegisterForm = () => {
           y: 0,
           opacity: 1,
         }}
-        type="text"
-        name="firstName"
-        placeholder="First Name"
-        className={classes.input}
-      />
-      <motion.input
-        initial={{
-          y: 50,
-          opacity: 0,
-        }}
-        animate={{
-          y: 0,
-          opacity: 1,
-        }}
         transition={{
-          delay: 0.1,
-        }}
-        type="text"
-        name="lastName"
-        placeholder="Last Name"
-        className={classes.input}
-      />
-      <motion.input
-        initial={{
-          y: 50,
-          opacity: 0,
-        }}
-        animate={{
-          y: 0,
-          opacity: 1,
-        }}
-        transition={{
-          delay: 0.2,
+          delay: 0,
         }}
         type="email"
         name="email"
@@ -74,7 +43,7 @@ const RegisterForm = () => {
           opacity: 1,
         }}
         transition={{
-          delay: 0.3,
+          delay: 0.1,
         }}
         className={classes.password__container}
       >
@@ -99,11 +68,11 @@ const RegisterForm = () => {
           opacity: 1,
         }}
         transition={{
-          delay: 0.4,
+          delay: 0.2,
         }}
         type="submit"
       >
-        Next{" "}
+        Login{" "}
         <span>
           <BiSolidRightArrow />
         </span>
@@ -112,4 +81,4 @@ const RegisterForm = () => {
   );
 };
 
-export default RegisterForm;
+export default LoginForm;

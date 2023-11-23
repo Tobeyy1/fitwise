@@ -39,7 +39,9 @@ const Addons = () => {
   const submitHandler = () => {
     router.push("/user-auth/payment");
   };
-
+  const skipHandler = () => {
+    router.push("/user-auth/payment");
+  };
   return (
     <div className={classes.container}>
       <AnimatePresence>
@@ -97,7 +99,7 @@ const Addons = () => {
           </span>
           {addOnDetails.trainingRegimen === "enabled" && (
             <SelectedAddon
-              message={`Selected`}
+              message={`Training Regimen`}
               onDelete={() => {
                 setAddOnDetails({
                   ...addOnDetails,
@@ -127,7 +129,7 @@ const Addons = () => {
           </span>
           {addOnDetails.dietPlan === "enabled" && (
             <SelectedAddon
-              message={`Selected`}
+              message={`Diet Plan`}
               onDelete={() => {
                 setAddOnDetails({
                   ...addOnDetails,
@@ -138,9 +140,19 @@ const Addons = () => {
           )}
         </div>
       </section>
-      <button className={classes.cta} onClick={submitHandler}>
-        Confirm
-      </button>
+      <div className={classes.cta__container}>
+        {" "}
+        <button
+          type="button"
+          onClick={skipHandler}
+          className={classes.skip__cta}
+        >
+          Skip
+        </button>
+        <button className={classes.confirm__cta} onClick={submitHandler}>
+          Confirm
+        </button>
+      </div>
     </div>
   );
 };

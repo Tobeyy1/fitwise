@@ -23,14 +23,14 @@ const Payment = () => {
   const onSuccess = () => {
     // Implementation for whatever you want to do with reference and after success call.
     console.log("Success!");
-    router.push("/system/home");
+    router.push("/client/home");
   };
 
   // you can call this function anything
   const onClose = () => {
     // implementation for  whatever you want to do when the Paystack dialog closed.
     console.log("closed");
-    router.push("/system/home");
+    router.push("/client/home");
   };
 
   const paymentHandler = () => {

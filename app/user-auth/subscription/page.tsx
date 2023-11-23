@@ -191,6 +191,9 @@ const Subscription = () => {
     e.preventDefault();
     router.push("/user-auth/subscription/addons");
   };
+  const skipHandler = () => {
+    router.push("/user-auth/subscription/addons");
+  };
 
   return (
     <div className={classes.container}>
@@ -208,10 +211,24 @@ const Subscription = () => {
         {fourTimesAWeekMembership}
         {unlimitedMembership}
       </motion.form>
-      <button type="submit" form="membershipForm">
+      <div className={classes.cta__container}>
         {" "}
-        Confirm
-      </button>
+        <button
+          type="button"
+          className={classes.skip__button}
+          onClick={skipHandler}
+        >
+          Skip
+        </button>
+        <button
+          type="submit"
+          className={classes.confirm__button}
+          form="membershipForm"
+        >
+          {" "}
+          Confirm
+        </button>
+      </div>
     </div>
   );
 };

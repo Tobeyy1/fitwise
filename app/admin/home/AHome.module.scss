@@ -1,0 +1,19 @@
+.container {
+  flex: 1;
+  height: 100dvh;
+  position: relative;
+  overflow: auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.top__bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem;
+
+  .intro__text {
+    font-weight: 500;
+  }
+}

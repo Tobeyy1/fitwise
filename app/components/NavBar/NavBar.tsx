@@ -8,18 +8,20 @@ import { BiSolidHome } from "react-icons/bi";
 import { HiShoppingCart } from "react-icons/hi";
 import { TbBarbell } from "react-icons/tb";
 import { GiMeal } from "react-icons/gi";
+type NavBarProps = { role: string };
 
-const NavBar = () => {
+const NavBar: React.FC<NavBarProps> = ({ role }) => {
   const pathname = usePathname();
+
   return (
     <nav className={classes.nav}>
       <span className={classes.top__bar}></span>
       <ul>
         <li>
           <Link
-            href="/system/home"
+            href={`/${role}/home`}
             className={`${classes.link} ${
-              pathname === "/system/home" ? classes.active__link : ""
+              pathname === `/${role}/home` ? classes.active__link : ""
             }`}
           >
             <BiSolidHome />
@@ -27,9 +29,9 @@ const NavBar = () => {
         </li>
         <li>
           <Link
-            href="/system/shop"
+            href={`/${role}/shop`}
             className={`${classes.link} ${
-              pathname === "/system/shop" ? classes.active__link : ""
+              pathname === `/${role}/shop` ? classes.active__link : ""
             }`}
           >
             <HiShoppingCart />
@@ -37,9 +39,9 @@ const NavBar = () => {
         </li>
         <li>
           <Link
-            href="/system/workouts"
+            href={`/${role}/workouts`}
             className={`${classes.link} ${
-              pathname === "/system/workouts" ? classes.active__link : ""
+              pathname === `/${role}/workouts` ? classes.active__link : ""
             }`}
           >
             <TbBarbell />
@@ -47,9 +49,9 @@ const NavBar = () => {
         </li>
         <li>
           <Link
-            href="/system/diet"
+            href={`/${role}/diet`}
             className={`${classes.link} ${
-              pathname === "/system/diet" ? classes.active__link : ""
+              pathname === `/${role}/diet` ? classes.active__link : ""
             }`}
           >
             <GiMeal />
