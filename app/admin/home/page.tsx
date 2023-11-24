@@ -1,11 +1,112 @@
-import React from "react";
+"use client";
+import React, { FormEvent, useState } from "react";
 import classes from "./AHome.module.scss";
+import { BiQrScan } from "react-icons/bi";
+import { CgDatabase, CgSearch } from "react-icons/cg";
+import { BsClipboardData } from "react-icons/bs";
+import { GiMoneyStack } from "react-icons/gi";
+import { PiWarning } from "react-icons/pi";
 
 const Home = () => {
+  const [isInputModalActive, setInputModalActive] = useState<boolean>(true);
+  const submitHandler = (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+  };
   return (
     <div className={classes.container}>
+      {isInputModalActive && (
+        <div className={classes.input__modal__container}>
+          {" "}
+          <div
+            onClick={() => setInputModalActive(false)}
+            className={classes.backdrop}
+          ></div>
+          <div className={classes.input__modal}>
+            {" "}
+            <h2>Manual Check-In</h2>{" "}
+            <form id="client username" onSubmit={submitHandler}>
+              {" "}
+              <label htmlFor="username" className={classes.label}>
+                {" "}
+                <p>Enter Client&apos;s Username</p>
+                <input
+                  type="text"
+                  name="username"
+                  id="username"
+                  placeholder="Eg: johndoe2000"
+                />
+              </label>
+            </form>
+            <button
+              type="submit"
+              form="client username"
+              className={classes.form__cta}
+            >
+              Submit
+            </button>
+          </div>{" "}
+        </div>
+      )}
       <section className={classes.top__bar}>
-        <h2 className={classes.intro__text}>Hello, Tobechukwu </h2>
+        <h2 className={classes.intro__text}>Welcome, Tobechukwu </h2>
+      </section>{" "}
+      <section className={classes.body}>
+        {" "}
+        <div className={classes.authenticate__user__container}>
+          <button className={classes.scan__user}>
+            <span className={classes.icon}>
+              <BiQrScan />
+            </span>{" "}
+            Scan QR Code
+          </button>{" "}
+          <span>OR</span>{" "}
+          <button
+            className={classes.manual__input}
+            onClick={() => setInputModalActive(true)}
+          >
+            {" "}
+            <span className={classes.icon}>
+              {" "}
+              <CgSearch />{" "}
+            </span>{" "}
+            Input Manually{" "}
+          </button>
+        </div>{" "}
+        <ul className={classes.admin__functions}>
+          {" "}
+          <li>
+            <button type="button" className={classes.membership__data}>
+              <span className={classes.icon}>
+                <CgDatabase />{" "}
+              </span>{" "}
+              Membership Data{" "}
+            </button>
+          </li>{" "}
+          <li>
+            <button type="button" className={classes.view__logs}>
+              <span className={classes.icon}>
+                <BsClipboardData />{" "}
+              </span>{" "}
+              View Logs{" "}
+            </button>
+          </li>{" "}
+          <li>
+            <button type="button" className={classes.edit__pricing}>
+              <span className={classes.icon}>
+                <GiMoneyStack />
+              </span>{" "}
+              Edit Pricing
+            </button>
+          </li>{" "}
+          <li>
+            <button type="button" className={classes.customer__complaint}>
+              <span className={classes.icon}>
+                <PiWarning />{" "}
+              </span>{" "}
+              Customer Complaints{" "}
+            </button>
+          </li>
+        </ul>
       </section>
     </div>
   );

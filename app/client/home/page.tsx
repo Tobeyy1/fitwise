@@ -62,7 +62,7 @@ const Home = () => {
         <div
           className={classes.training}
           onClick={() => {
-            router.push("/system/workouts");
+            router.push("/client/workouts");
           }}
         >
           <div className={classes.text__container}>
@@ -95,7 +95,7 @@ const Home = () => {
         <div
           className={classes.diet}
           onClick={() => {
-            router.push("/system/diet");
+            router.push("/client/diet");
           }}
         >
           {" "}
