@@ -36,7 +36,7 @@ const EditItem = () => {
   };
   return (
     <div className={classes.container}>
-      <AnimatePresence>
+      <AnimatePresence mode="popLayout">
         {selectedCategory === "" && (
           <motion.div
             initial={{ opacity: 0, scale: 0 }}
@@ -45,7 +45,10 @@ const EditItem = () => {
             className={classes.category__modal}
           >
             <h2>Select a Category</h2>{" "}
-            <div className={classes.menu} onClick={() => setShowMenu(true)}>
+            <div
+              className={classes.menu}
+              onClick={() => setShowMenu(!showMenu)}
+            >
               Select a Category{" "}
               <span className={classes.icon}>
                 <IoIosArrowDown />
@@ -55,7 +58,7 @@ const EditItem = () => {
                   variants={variants}
                   initial="initial"
                   animate="animate"
-                  exit={"exit"}
+                  // exit={"exit"}
                 >
                   {categories.map((category: string) => (
                     <motion.li
