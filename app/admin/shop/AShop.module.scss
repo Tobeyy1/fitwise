@@ -1,6 +1,8 @@
 .container {
-  display: grid;
-  place-content: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: auto;
 }
 .objective__modal {
   display: flex;

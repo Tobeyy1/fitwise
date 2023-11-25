@@ -2,7 +2,7 @@ import React from "react";
 import classes from "./shop.module.scss";
 import Link from "next/link";
 import Image from "next/image";
-import Item from "./Item";
+import ShopItem from "@/app/components/ShopItem/ShopItem";
 import { motion } from "framer-motion";
 import { MdOutlineKeyboardArrowRight } from "react-icons/md";
 
@@ -24,10 +24,10 @@ const AllItemsRow: React.FC<Props> = ({ header, seeAllHandler }) => {
         <button onClick={() => seeAllHandler(header)}>See all</button>
       </div>
       <div className={classes.items}>
-        <Item />
-        <Item />
-        <Item />
-        <Item />
+        <ShopItem link="/client/shop/nike-trainers" />
+        <ShopItem link="/client/shop/nike-trainers" />
+        <ShopItem link="/client/shop/nike-trainers" />
+        <ShopItem link="/client/shop/nike-trainers" />
 
         <motion.button
           initial={{ scale: 0, opacity: 0 }}

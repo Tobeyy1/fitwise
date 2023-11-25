@@ -1,12 +1,13 @@
 import React from "react";
-import classes from "./shop.module.scss";
+import classes from "./ShopItem.module.scss";
 import Image from "next/image";
 import TRAINER from "../../assets/images/nike-trainer.jpg";
 import Link from "next/link";
+type ShopItemProps = { link: string };
 
-const Item = () => {
+const ShopItem: React.FC<ShopItemProps> = ({ link }) => {
   return (
-    <Link href={"/client/shop/nike-trainers"} className={classes.item}>
+    <Link href={link} className={classes.item}>
       <div className={classes.image__container}>
         <Image src={TRAINER} alt="Item" fill className={classes.image} />
       </div>
@@ -16,4 +17,4 @@ const Item = () => {
   );
 };
 
-export default Item;
+export default ShopItem;

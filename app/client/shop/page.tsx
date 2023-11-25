@@ -11,7 +11,7 @@ import Link from "next/link";
 import Image from "next/image";
 import TRAINER from "../../assets/images/nike-trainer.jpg";
 import AllItemsRow from "./AllItemsRow";
-import SpecificFilterDisplay from "./SpecificFilterDisplay";
+import SpecificFilterDisplay from "../../components/SpecificFilterDisplay/SpecificFilterDisplay";
 
 const filters = [
   "all",
