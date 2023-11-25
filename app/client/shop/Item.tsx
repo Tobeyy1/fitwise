@@ -6,7 +6,7 @@ import Link from "next/link";
 
 const Item = () => {
   return (
-    <Link href={"/system/shop/nike-trainers"} className={classes.item}>
+    <Link href={"/client/shop/nike-trainers"} className={classes.item}>
       <div className={classes.image__container}>
         <Image src={TRAINER} alt="Item" fill className={classes.image} />
       </div>

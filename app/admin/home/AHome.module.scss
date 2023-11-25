@@ -118,6 +118,9 @@
     width: 100%;
     label {
       font-size: clamp(1rem, 2vw, 2rem);
+      p {
+        margin-left: 1rem;
+      }
       input {
         height: 3rem;
         width: 100%;

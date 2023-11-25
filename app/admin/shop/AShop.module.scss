@@ -1,0 +1,35 @@
+.container {
+  display: grid;
+  place-content: center;
+}
+.objective__modal {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  .cta__container {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    gap: 1rem;
+    button {
+      display: flex;
+      align-items: center;
+      flex-direction: column;
+      gap: 1ch;
+      border-radius: 12px;
+      border: none;
+      flex: 1;
+      aspect-ratio: 1;
+      background-color: var(--accent-100);
+      padding: 1rem;
+      justify-content: center;
+      font-size: clamp(1.25rem, 2vw, 3rem);
+      .icon {
+        display: grid;
+        place-content: center;
+        font-size: clamp(2rem, 2vw, 3rem);
+      }
+    }
+  }
+}
