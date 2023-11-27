@@ -1,10 +1,12 @@
 "use client";
-import React, { useState } from "react";
+import React, { FormEvent, useState } from "react";
 import classes from "./AddItem.module.scss";
 import { IoIosArrowDown, IoMdAdd } from "react-icons/io";
 import { AnimatePresence, motion } from "framer-motion";
 import { TbArrowLeft } from "react-icons/tb";
 import Image from "next/image";
+import CreateCategory from "./CreateCategory";
+import { useRouter } from "next/navigation";
 const filters = [
   "tops",
   "shorts",
@@ -32,6 +34,7 @@ const AddItem = () => {
     image: "",
   });
   const [currentFilter, setCurrentFilter] = useState<string>("");
+  const router = useRouter();
   const variants = {
     initial: {
       backgroundColor: "transparent",
@@ -68,13 +71,45 @@ const AddItem = () => {
       reader.readAsDataURL(file);
     }
   };
+  const handleCreateCategory = (category: string) => {
+    filters.push(category);
+    setCurrentFilter(category);
+    setIsCreateCategoryModalActive(false);
+  };
+  const submitHandler = (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    if (currentFilter === "") {
+      setIsMenuVisible(true);
+      return;
+    }
+    const formData = new FormData(e.currentTarget);
+    const itemDetails = {
+      name: formData.get("name"),
+      color: formData.get("color"),
+      size: formData.get("size"),
+      price: formData.get("price"),
+    };
+    console.log({ itemDetails });
+    e.currentTarget.reset();
+  };
   return (
     <div className={classes.container}>
       {" "}
+      <AnimatePresence>
+        {isCreateCategoryModalActive && (
+          <CreateCategory
+            onClose={setIsCreateCategoryModalActive}
+            onCreate={handleCreateCategory}
+          />
+        )}
+      </AnimatePresence>
       <section className={classes.top__bar}>
-        <span className={classes.icon}>
+        {/* <span
+          className={classes.icon}
+          onClick={() => router.push("/admin/shop")}
+        >
           <TbArrowLeft />
-        </span>
+        </span> */}
         <div
           className={classes.menu}
           onClick={() => setIsMenuVisible(!isMenuVisible)}
@@ -112,14 +147,23 @@ const AddItem = () => {
             )}
           </AnimatePresence>
         </div>
-        <span className={classes.icon}>
+        <span
+          className={classes.icon}
+          title="Create New Category"
+          onClick={() => setIsCreateCategoryModalActive(true)}
+        >
           <IoMdAdd />
         </span>
       </section>{" "}
       <section className={classes.body}>
         <label className={classes.image__container} htmlFor="image">
           {itemDetails.image ? (
-            <Image src={itemDetails.image} alt="Item Image" fill />
+            <Image
+              src={itemDetails.image}
+              alt="Item Image"
+              fill
+              className={classes.image}
+            />
           ) : (
             <span className={classes.icon}>
               <IoMdAdd />
@@ -132,7 +176,7 @@ const AddItem = () => {
             onChange={handleImageChange}
           />
         </label>{" "}
-        <form className={classes.form}>
+        <form className={classes.form} onSubmit={submitHandler}>
           <label htmlFor="name">
             {" "}
             <p>Name: </p>
