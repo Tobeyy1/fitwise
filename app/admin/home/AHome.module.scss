@@ -128,7 +128,14 @@
         background-color: var(--bg-300);
         border: none;
         padding: 1rem;
+        font-size: clamp(1rem, 2vw, 2rem);
         margin-top: 0.5rem;
+
+        &:focus {
+          outline: none;
+          border: 1px solid var(--accent-100);
+          background-color: var(--bg-100);
+        }
       }
     }
   }

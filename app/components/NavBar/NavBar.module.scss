@@ -61,3 +61,40 @@
     }
   }
 }
+@media screen and (orientation: landscape) {
+  .nav {
+    width: fit-content;
+    padding-inline: 0px;
+    padding-block: 1rem;
+    height: 100dvh;
+    ul {
+      flex-direction: column;
+      height: 100%;
+      li {
+        .link {
+          padding-inline: 1rem;
+        }
+        .active__link {
+          width: 100%;
+          height: fit-content;
+          border-top: none;
+          border-right: 1px solid var(--accent-100);
+          translate: 50% 0rem;
+        }
+      }
+    }
+    .top__bar {
+      position: absolute;
+      top: 0px;
+      left: calc(100% - 1px);
+      width: 1px;
+      height: 100%;
+      background-image: linear-gradient(
+        to bottom,
+        transparent,
+        var(--accent-100),
+        transparent
+      );
+    }
+  }
+}

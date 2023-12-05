@@ -1,4 +1,5 @@
 .container {
+  height: 100vh;
   height: 100dvh;
   display: flex;
   flex-direction: column;
@@ -6,5 +7,10 @@
 
   & > div {
     flex: 1;
+  }
+}
+@media screen and (orientation: landscape) {
+  .container {
+    flex-direction: row-reverse;
   }
 }

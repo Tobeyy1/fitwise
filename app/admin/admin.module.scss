@@ -8,3 +8,8 @@
     flex: 1;
   }
 }
+@media screen and (orientation: landscape) {
+  .container {
+    flex-direction: row-reverse;
+  }
+}

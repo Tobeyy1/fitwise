@@ -20,7 +20,7 @@
   }
 
   & > label {
-    min-width: calc(100vw - 5rem);
+    min-width: calc(100% - 5rem);
     background-color: var(--bg-300);
     padding: 1rem;
     gap: 1rem;
@@ -45,7 +45,7 @@
       border-radius: 99px;
       display: grid;
       place-content: center;
-      font-size: clamp(2rem, 5vw, 5rem);
+      font-size: 2rem;
     }
 
     input {
@@ -124,5 +124,12 @@
     &:hover {
       background-color: var(--primary-200);
     }
+  }
+}
+@media screen and (orientation: landscape) {
+  .container {
+    overflow: auto;
+    max-width: 700px;
+    margin-inline: auto;
   }
 }

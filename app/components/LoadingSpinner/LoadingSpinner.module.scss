@@ -1,0 +1,53 @@
+.container {
+  position: absolute;
+  height: 100dvh;
+  width: 100vw;
+  background-color: var(--bg-100);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2;
+}
+
+.loading__wave {
+  width: 300px;
+  height: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+}
+
+.loading__bar {
+  width: 20px;
+  height: 10px;
+  margin: 0 5px;
+  background-color: var(--accent-100);
+  border-radius: 5px;
+  animation: loading__wave__animation 1s ease-in-out infinite;
+}
+
+.loading__bar:nth-child(2) {
+  animation-delay: 0.1s;
+}
+
+.loading__bar:nth-child(3) {
+  animation-delay: 0.2s;
+}
+
+.loading__bar:nth-child(4) {
+  animation-delay: 0.3s;
+}
+
+@keyframes loading__wave__animation {
+  0% {
+    height: 10px;
+  }
+
+  50% {
+    height: 50px;
+  }
+
+  100% {
+    height: 10px;
+  }
+}

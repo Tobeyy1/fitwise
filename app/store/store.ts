@@ -7,7 +7,9 @@ interface ThemeState {
 interface QRCodeState {
   qrCode: boolean;
 }
-
+interface IsLoadingState {
+  isLoading: boolean;
+}
 const themeSlice = createSlice({
   name: "theme",
   initialState: {
@@ -30,11 +32,23 @@ const qrCodeSlice = createSlice({
     },
   },
 });
+const isLoadingSlice = createSlice({
+  name: "isLoading",
+  initialState: {
+    isLoading: false,
+  } as IsLoadingState,
+  reducers: {
+    setIsLoading: (state, action: PayloadAction<boolean>) => {
+      state.isLoading = action.payload;
+    },
+  },
+});
 
 const rootReducer = combineReducers({
   //   playersData: playersDataSlice.reducer,
   theme: themeSlice.reducer,
   qrCode: qrCodeSlice.reducer,
+  isLoading: isLoadingSlice.reducer,
 });
 
 const store = configureStore({
@@ -43,4 +57,5 @@ const store = configureStore({
 
 export const themeActions = themeSlice.actions;
 export const qrCodeActions = qrCodeSlice.actions;
+export const isLoadingActions = isLoadingSlice.actions;
 export default store;

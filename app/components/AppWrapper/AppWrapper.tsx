@@ -5,6 +5,7 @@ import React, { ReactNode, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import QRCodeComponent from "../QRCode/QRCode";
 import { AnimatePresence } from "framer-motion";
+import LoadingSpinner from "../LoadingSpinner/LoadingSpinner";
 
 interface Props {
   children: ReactNode;
@@ -16,6 +17,7 @@ const AppWrapper: React.FC<Props> = ({ children }) => {
   const theme = useSelector((state: any) => state.theme.theme);
 
   const showQRCode = useSelector((state: any) => state.qrCode.qrCode);
+  const isLoading = useSelector((state: any) => state.isLoading.isLoading);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -31,6 +33,7 @@ const AppWrapper: React.FC<Props> = ({ children }) => {
       className={theme === "dark" ? "dark" : "light"}
     >
       <AnimatePresence>{showQRCode && <QRCodeComponent />}</AnimatePresence>
+      <AnimatePresence>{isLoading && <LoadingSpinner />}</AnimatePresence>
       {children}
     </main>
   );

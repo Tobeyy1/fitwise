@@ -47,3 +47,10 @@
     object-fit: cover;
   }
 }
+@media screen and (orientation: landscape) {
+  .container {
+    a {
+      max-width: 500px;
+    }
+  }
+}

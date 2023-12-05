@@ -34,53 +34,57 @@ const ItemDisplay = () => {
           <HiShoppingCart />
         </span>
       </div>
-      <motion.div
-        initial={{ opacity: 0, scale: 0 }}
-        animate={{ scale: 1, opacity: 1 }}
-        exit={{ scale: 0.5, opacity: 0 }}
-        transition={{ type: "tween" }}
-        className={classes.image__container}
-      >
-        <Image src={TRAINER} className={classes.image} alt="Item " fill />{" "}
-        <div
-          className={classes.full__screen}
-          onClick={() => setIsFullScreenActive(true)}
+      <div className={classes.body}>
+        <motion.div
+          initial={{ opacity: 0, scale: 0 }}
+          animate={{ scale: 1, opacity: 1 }}
+          exit={{ scale: 0.5, opacity: 0 }}
+          transition={{ type: "tween" }}
+          className={classes.image__container}
         >
-          <span className={classes.icon}>
-            {" "}
-            <BsFullscreen />
-          </span>{" "}
-          <p>Full Screen</p>
+          <Image src={TRAINER} className={classes.image} alt="Item " fill />{" "}
+          <div
+            className={classes.full__screen}
+            onClick={() => setIsFullScreenActive(true)}
+          >
+            <span className={classes.icon}>
+              {" "}
+              <BsFullscreen />
+            </span>{" "}
+            <p>Full Screen</p>
+          </div>
+        </motion.div>{" "}
+        <div className={classes.details__container}>
+          <motion.div
+            initial={{ y: 100, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            exit={{ y: 100, opacity: 0 }}
+            transition={{ delay: 0.25, type: "tween" }}
+            className={classes.item__details}
+          >
+            <p>Color</p> <span className={classes.value}>Blue</span>
+          </motion.div>
+          <motion.div
+            initial={{ y: 100, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            exit={{ y: 100, opacity: 0 }}
+            transition={{ delay: 0.35, type: "tween" }}
+            className={classes.item__details}
+          >
+            <p>Size</p> <span className={classes.value}>45</span>
+          </motion.div>
+          <motion.button
+            initial={{ y: "100%", opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            exit={{ y: "100%", opacity: 0 }}
+            transition={{ delay: 0.45, type: "tween" }}
+            type="button"
+            className={classes.add__to__cart}
+          >
+            ADD TO CART - <span>N15,000</span>
+          </motion.button>
         </div>
-      </motion.div>{" "}
-      <motion.div
-        initial={{ y: 100, opacity: 0 }}
-        animate={{ y: 0, opacity: 1 }}
-        exit={{ y: 100, opacity: 0 }}
-        transition={{ delay: 0.25, type: "tween" }}
-        className={classes.item__details}
-      >
-        <p>Color</p> <span className={classes.value}>Blue</span>
-      </motion.div>
-      <motion.div
-        initial={{ y: 100, opacity: 0 }}
-        animate={{ y: 0, opacity: 1 }}
-        exit={{ y: 100, opacity: 0 }}
-        transition={{ delay: 0.35, type: "tween" }}
-        className={classes.item__details}
-      >
-        <p>Size</p> <span className={classes.value}>45</span>
-      </motion.div>
-      <motion.button
-        initial={{ y: "100%", opacity: 0 }}
-        animate={{ y: 0, opacity: 1 }}
-        exit={{ y: "100%", opacity: 0 }}
-        transition={{ delay: 0.45, type: "tween" }}
-        type="button"
-        className={classes.add__to__cart}
-      >
-        ADD TO CART - <span>N15,000</span>
-      </motion.button>
+      </div>
     </div>
   );
 };
