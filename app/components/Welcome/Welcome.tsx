@@ -7,18 +7,22 @@ import Link from "next/link";
 // import BG_VIDEO from "../../assets/videos/workout_welcome_screen.mp4"
 
 const Welcome = () => {
-  const [videoURL, setVideoURL] = useState<string>(
-    "/videos/workout_welcome_screen_portrait.mp4"
-  );
+  let mql = window.matchMedia("(orientation: landscape)");
 
+  const landscapeVideoURL = "/videos/workout_welcome_screen_landscape.mp4";
+  const portraitVideoURL = "/videos/workout_welcome_screen_portrait.mp4";
+  const [videoURL, setVideoURL] = useState<string>(
+    mql.matches ? landscapeVideoURL : portraitVideoURL
+  );
   useEffect(() => {
-    // Use window.innerWidth and window.innerHeight directly
-    if (window.innerWidth > window.innerHeight) {
-      setVideoURL("/videos/workout_welcome_screen_landscape.mp4");
-    } else {
-      setVideoURL("/videos/workout_welcome_screen_portrait.mp4");
-    }
-  }, []);
+    mql.addEventListener("change", () => {
+      if (mql.matches) {
+        setVideoURL(landscapeVideoURL);
+      } else {
+        setVideoURL(portraitVideoURL);
+      }
+    });
+  }, [mql]);
 
   return (
     <div className={classes.container}>

@@ -12,12 +12,13 @@ import { usePathname } from "next/navigation";
 const QRCodeComponent = () => {
   const theme = useSelector((state: any) => state.theme.theme);
   const dispatch = useDispatch();
-
+  let mql = window.matchMedia("(orientation: landscape)");
   const onCloseHandler = () => {
     dispatch(qrCodeActions.setQRCode(false));
   };
 
   const pathname = usePathname();
+  console.log(mql);
   return (
     <motion.div
       initial={{ backgroundColor: "transparent" }}
@@ -52,7 +53,7 @@ const QRCodeComponent = () => {
       >
         <QRCode
           value={"Hello, world!"}
-          size={window.innerWidth - 72}
+          size={mql.matches ? window.innerHeight - 144 : window.innerWidth - 72}
           bgColor={theme === "dark" ? "#1e1e1e" : "#fff"}
           fgColor={theme === "dark" ? "#fff" : "#1e1e1e"}
           level="L"

@@ -34,6 +34,7 @@
       .link {
         font-size: clamp(1.5rem, 3vw, 3rem);
         display: grid;
+        aspect-ratio: 1;
         place-content: center;
         border-top: 1px solid transparent;
         transition: var(--transition-normal);
@@ -73,6 +74,9 @@
       li {
         .link {
           padding-inline: 1rem;
+          width: 100%;
+          border-top: none;
+          border-right: 1px solid transparent;
         }
         .active__link {
           width: 100%;
