@@ -7,22 +7,18 @@ import Link from "next/link";
 // import BG_VIDEO from "../../assets/videos/workout_welcome_screen.mp4"
 
 const Welcome = () => {
-  let mql = window.matchMedia("(orientation: landscape)");
+  const [isLandscape, setIsLandscape] = useState<boolean>(false);
 
   const landscapeVideoURL = "/videos/workout_welcome_screen_landscape.mp4";
   const portraitVideoURL = "/videos/workout_welcome_screen_portrait.mp4";
-  const [videoURL, setVideoURL] = useState<string>(
-    mql.matches ? landscapeVideoURL : portraitVideoURL
-  );
+
   useEffect(() => {
+    let mql = window.matchMedia("(orientation: landscape)");
     mql.addEventListener("change", () => {
-      if (mql.matches) {
-        setVideoURL(landscapeVideoURL);
-      } else {
-        setVideoURL(portraitVideoURL);
-      }
+      setIsLandscape(mql.matches);
     });
-  }, [mql]);
+    return mql.removeEventListener("change", () => {});
+  }, []);
 
   return (
     <div className={classes.container}>
@@ -33,12 +29,10 @@ const Welcome = () => {
           loop
           // width={window.innerWidth}
           // height={window.innerHeight}
-
+          src={isLandscape ? landscapeVideoURL : portraitVideoURL}
           preload="auto"
           playsInline
-        >
-          <source src={videoURL} type="video/mp4" />
-        </video>
+        ></video>
       </div>
       <h1>FitWise</h1>
       <Link href="/onboarding">
