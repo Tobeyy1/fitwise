@@ -7,11 +7,44 @@ import { BsClipboardData } from "react-icons/bs";
 import { GiMoneyStack } from "react-icons/gi";
 import { PiWarning } from "react-icons/pi";
 import { AnimatePresence, motion } from "framer-motion";
+import { useDispatch } from "react-redux";
+import { isLoadingActions } from "@/app/store/store";
+import ClientDisplay from "@/app/components/ClientDisplay/ClientDisplay";
+type ClientDetails = {
+  firstName: string;
+  lastName: string;
+  username: string;
+  membership: string;
+  trainingRegimen: string;
+  dietPlan: string;
+  bottlesOfWater: number;
+};
 
 const Home = () => {
   const [isInputModalActive, setInputModalActive] = useState<boolean>(false);
+  const [clientDetails, setClientDetails] = useState<ClientDetails | null>(
+    null
+  );
+  const dispatch = useDispatch();
   const submitHandler = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    const clientDetails = {
+      firstName: "John",
+      lastName: "Doe",
+      username: "johndoe2000",
+      membership: "Weekend Warrior",
+      trainingRegimen: "Enabled",
+      dietPlan: "Enabled",
+      bottlesOfWater: 0,
+    };
+    dispatch(isLoadingActions.setIsLoading(true));
+    setTimeout(() => {
+      setClientDetails(clientDetails);
+      dispatch(isLoadingActions.setIsLoading(false));
+    }, 3000);
+  };
+  const closeHandler = () => {
+    setClientDetails(null);
   };
   return (
     <div className={classes.container}>
@@ -57,6 +90,11 @@ const Home = () => {
             </motion.div>{" "}
           </div>
         )}
+      </AnimatePresence>{" "}
+      <AnimatePresence>
+        {clientDetails && (
+          <ClientDisplay data={clientDetails} onClose={closeHandler} />
+        )}{" "}
       </AnimatePresence>
       <section className={classes.top__bar}>
         <h2 className={classes.intro__text}>Welcome, Tobechukwu </h2>
