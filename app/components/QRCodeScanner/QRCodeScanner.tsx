@@ -87,7 +87,12 @@ const QRCodeScanner: React.FC<Props> = ({ onClose, fetchClientData }) => {
       }}
     >
       <div className={classes.webcam__container}>
-        <Webcam ref={webcamRef} mirrored style={{ maxWidth: "100%" }} />
+        <Webcam
+          ref={webcamRef}
+          mirrored
+          style={{ maxWidth: "100%" }}
+          videoConstraints={{ facingMode: { exact: "environment" } }}
+        />
       </div>
     </div>
   );
