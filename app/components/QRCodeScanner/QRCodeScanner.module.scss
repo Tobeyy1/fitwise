@@ -4,9 +4,17 @@
   display: grid;
   place-content: center;
   background-color: var(--bg-100);
-
+  isolation: isolate;
   padding: 1rem;
   //   aspect-ratio: 1;
+  button {
+    z-index: 2;
+  }
+}
+.backdrop {
+  background-color: transparent;
+  position: absolute;
+  inset: 0;
 }
 .webcam__container {
   border: 1px solid var(--accent-100);

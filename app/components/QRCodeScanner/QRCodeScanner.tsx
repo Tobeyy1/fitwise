@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import classes from "./QRCodeScanner.module.scss";
 import Webcam from "react-webcam";
 import jsQR from "jsqr";
@@ -7,7 +7,8 @@ type Props = { onClose: () => void; fetchClientData: () => void };
 
 const QRCodeScanner: React.FC<Props> = ({ onClose, fetchClientData }) => {
   const webcamRef = useRef<Webcam>(null);
-
+  const [isFrontCameraActive, setIsFrontCameraActive] =
+    useState<boolean>(false);
   useEffect(() => {
     console.log("Component Mounted");
     let currentWebcamRef = webcamRef.current;
@@ -50,6 +51,7 @@ const QRCodeScanner: React.FC<Props> = ({ onClose, fetchClientData }) => {
             if (code) {
               console.log("QR Code detected:", code.data);
               // Handle the scanned QR code data as needed
+              closeHandler();
               fetchClientData();
             }
 
@@ -73,25 +75,35 @@ const QRCodeScanner: React.FC<Props> = ({ onClose, fetchClientData }) => {
       console.log("Running Clean up...");
     };
   }, []);
-
+  const closeHandler = () => {
+    if (!webcamRef.current || !webcamRef.current.video) return;
+    const tracks: MediaStreamTrack[] = (
+      webcamRef.current?.video.srcObject as MediaStream
+    )?.getTracks();
+    tracks[0].stop();
+    onClose();
+  };
+  const videoConstraints = {
+    facingMode: { exact: isFrontCameraActive ? "user" : "environment" },
+  };
   return (
-    <div
-      className={classes.container}
-      onClick={() => {
-        if (!webcamRef.current || !webcamRef.current.video) return;
-        const tracks: MediaStreamTrack[] = (
-          webcamRef.current?.video.srcObject as MediaStream
-        )?.getTracks();
-        tracks[0].stop();
-        onClose();
-      }}
-    >
+    <div className={classes.container}>
+      {" "}
+      <div className={classes.backdrop} onClick={closeHandler}></div>
+      <button
+        type="button"
+        onClick={() => {
+          setIsFrontCameraActive(!isFrontCameraActive);
+        }}
+      >
+        Flip Camera
+      </button>
       <div className={classes.webcam__container}>
         <Webcam
           ref={webcamRef}
           mirrored
           style={{ maxWidth: "100%" }}
-          videoConstraints={{ facingMode: { exact: "environment" } }}
+          videoConstraints={videoConstraints}
         />
       </div>
     </div>
