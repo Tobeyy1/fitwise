@@ -10,6 +10,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import { useDispatch } from "react-redux";
 import { isLoadingActions } from "@/app/store/store";
 import ClientDisplay from "@/app/components/ClientDisplay/ClientDisplay";
+import QRCodeScanner from "@/app/components/QRCodeScanner/QRCodeScanner";
 type ClientDetails = {
   firstName: string;
   lastName: string;
@@ -25,9 +26,9 @@ const Home = () => {
   const [clientDetails, setClientDetails] = useState<ClientDetails | null>(
     null
   );
+  const [isScannerActive, setIsScannerActive] = useState<boolean>(false);
   const dispatch = useDispatch();
-  const submitHandler = (e: FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
+  const fetchClientData = () => {
     const clientDetails = {
       firstName: "John",
       lastName: "Doe",
@@ -39,12 +40,20 @@ const Home = () => {
     };
     dispatch(isLoadingActions.setIsLoading(true));
     setTimeout(() => {
+      setIsScannerActive(false);
       setClientDetails(clientDetails);
       dispatch(isLoadingActions.setIsLoading(false));
     }, 3000);
   };
-  const closeHandler = () => {
+  const submitHandler = (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    fetchClientData();
+  };
+  const closeClientDetailsHandler = () => {
     setClientDetails(null);
+  };
+  const closeQRScannerHandler = () => {
+    setIsScannerActive(false);
   };
   return (
     <div className={classes.container}>
@@ -93,7 +102,18 @@ const Home = () => {
       </AnimatePresence>{" "}
       <AnimatePresence>
         {clientDetails && (
-          <ClientDisplay data={clientDetails} onClose={closeHandler} />
+          <ClientDisplay
+            data={clientDetails}
+            onClose={closeClientDetailsHandler}
+          />
+        )}{" "}
+      </AnimatePresence>
+      <AnimatePresence>
+        {isScannerActive && (
+          <QRCodeScanner
+            onClose={closeQRScannerHandler}
+            fetchClientData={fetchClientData}
+          />
         )}{" "}
       </AnimatePresence>
       <section className={classes.top__bar}>
@@ -102,7 +122,10 @@ const Home = () => {
       <section className={classes.body}>
         {" "}
         <div className={classes.authenticate__user__container}>
-          <button className={classes.scan__user}>
+          <button
+            className={classes.scan__user}
+            onClick={() => setIsScannerActive(true)}
+          >
             <span className={classes.icon}>
               <BiQrScan />
             </span>{" "}

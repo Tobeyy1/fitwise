@@ -1,0 +1,15 @@
+.container {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-content: center;
+  background-color: var(--bg-100);
+
+  padding: 1rem;
+  //   aspect-ratio: 1;
+}
+.webcam__container {
+  border: 1px solid var(--accent-100);
+  border-radius: 36px;
+  overflow: hidden;
+}
