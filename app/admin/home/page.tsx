@@ -11,6 +11,8 @@ import { useDispatch } from "react-redux";
 import { isLoadingActions } from "@/app/store/store";
 import ClientDisplay from "@/app/components/ClientDisplay/ClientDisplay";
 import QRCodeScanner from "@/app/components/QRCodeScanner/QRCodeScanner";
+import CustomerComplaints from "@/app/components/CustomerComplaints/CustomerComplaints";
+import FinancialLogs from "@/app/components/FinancialLogs/FinancialLogs";
 type ClientDetails = {
   firstName: string;
   lastName: string;
@@ -27,6 +29,9 @@ const Home = () => {
     null
   );
   const [isScannerActive, setIsScannerActive] = useState<boolean>(false);
+  const [showCustomerComplaints, setShowCustomerComplaints] =
+    useState<boolean>(false);
+  const [showLogs, setShowLogs] = useState<boolean>(false);
   const dispatch = useDispatch();
   const fetchClientData = () => {
     const clientDetails = {
@@ -115,6 +120,26 @@ const Home = () => {
             fetchClientData={fetchClientData}
           />
         )}{" "}
+      </AnimatePresence>{" "}
+      <AnimatePresence>
+        {" "}
+        {showCustomerComplaints && (
+          <CustomerComplaints
+            onClose={() => {
+              setShowCustomerComplaints(false);
+            }}
+          />
+        )}{" "}
+      </AnimatePresence>
+      <AnimatePresence>
+        {" "}
+        {showLogs && (
+          <FinancialLogs
+            onClose={() => {
+              setShowLogs(false);
+            }}
+          />
+        )}{" "}
       </AnimatePresence>
       <section className={classes.top__bar}>
         <h2 className={classes.intro__text}>Welcome, Tobechukwu </h2>
@@ -155,7 +180,11 @@ const Home = () => {
             </button>
           </li>{" "}
           <li>
-            <button type="button" className={classes.view__logs}>
+            <button
+              type="button"
+              className={classes.view__logs}
+              onClick={() => setShowLogs(true)}
+            >
               <span className={classes.icon}>
                 <BsClipboardData />{" "}
               </span>{" "}
@@ -171,7 +200,11 @@ const Home = () => {
             </button>
           </li>{" "}
           <li>
-            <button type="button" className={classes.customer__complaint}>
+            <button
+              type="button"
+              className={classes.customer__complaint}
+              onClick={() => setShowCustomerComplaints(true)}
+            >
               <span className={classes.icon}>
                 <PiWarning />{" "}
               </span>{" "}
