@@ -3,12 +3,12 @@ import React, { useEffect, useState, useRef } from "react";
 import classes from "./QRCodeScanner.module.scss";
 import Webcam from "react-webcam";
 import jsQR from "jsqr";
+import { MdOutlineFlipCameraIos } from "react-icons/md";
 type Props = { onClose: () => void; fetchClientData: () => void };
 
 const QRCodeScanner: React.FC<Props> = ({ onClose, fetchClientData }) => {
   const webcamRef = useRef<Webcam>(null);
-  const [isFrontCameraActive, setIsFrontCameraActive] =
-    useState<boolean>(false);
+  const [isFrontCameraActive, setIsFrontCameraActive] = useState<boolean>(true);
   useEffect(() => {
     console.log("Component Mounted");
     let currentWebcamRef = webcamRef.current;
@@ -90,18 +90,21 @@ const QRCodeScanner: React.FC<Props> = ({ onClose, fetchClientData }) => {
     <div className={classes.container}>
       {" "}
       <div className={classes.backdrop} onClick={closeHandler}></div>
-      <button
-        type="button"
-        onClick={() => {
-          setIsFrontCameraActive(!isFrontCameraActive);
-        }}
-      >
-        Flip Camera
-      </button>
       <div className={classes.webcam__container}>
+        {" "}
+        <span className={classes.scan__bar}></span>
+        <button
+          type="button"
+          title="Flip Camera"
+          onClick={() => {
+            setIsFrontCameraActive(!isFrontCameraActive);
+          }}
+        >
+          <MdOutlineFlipCameraIos />
+        </button>
         <Webcam
           ref={webcamRef}
-          mirrored
+          mirrored={isFrontCameraActive ? true : false}
           style={{ maxWidth: "100%" }}
           videoConstraints={videoConstraints}
         />
