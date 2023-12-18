@@ -15,6 +15,7 @@ import CustomerComplaints from "@/app/components/CustomerComplaints/CustomerComp
 import FinancialLogs from "@/app/components/FinancialLogs/FinancialLogs";
 import MembershipData from "@/app/components/MembershipData/MembershipData";
 import { IoIosSettings } from "react-icons/io";
+import Settings from "./Settings";
 type ClientDetails = {
   firstName: string;
   lastName: string;
@@ -35,6 +36,7 @@ const Home = () => {
     useState<boolean>(false);
   const [showLogs, setShowLogs] = useState<boolean>(false);
   const [showMembershipData, setShowMembershipData] = useState<boolean>(false);
+  const [showSettings, setShowSettings] = useState<boolean>(false);
 
   const dispatch = useDispatch();
 
@@ -157,12 +159,23 @@ const Home = () => {
           />
         )}{" "}
       </AnimatePresence>
+      <AnimatePresence>
+        {" "}
+        {showSettings && (
+          <Settings
+            onClose={() => {
+              setShowSettings(false);
+            }}
+          />
+        )}{" "}
+      </AnimatePresence>
       <section className={classes.top__bar}>
         <h2 className={classes.intro__text}>Welcome, Tobechukwu </h2>{" "}
         <button
           type="button"
           className={classes.settings__cta}
           title="Settings"
+          onClick={() => setShowSettings(true)}
         >
           <IoIosSettings />{" "}
         </button>

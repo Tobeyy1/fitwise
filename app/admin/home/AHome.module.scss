@@ -159,3 +159,70 @@
     background-color: var(--accent-100);
   }
 }
+
+//// SETTINGS MODAL //////////////////////////////////////////////////////////////////
+
+.settings__container {
+  background-color: var(--bg-100);
+  position: absolute;
+  inset: 0;
+  isolation: isolate;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  .settings__backdrop {
+    background-color: var(--bg-100);
+    position: absolute;
+    inset: 0;
+  }
+  .settings__modal {
+    z-index: 1;
+    background-color: var(--bg-100);
+    padding: 1rem;
+    border-radius: calc(12px + 1rem);
+    display: flex;
+    flex-direction: column;
+    border: 1px solid transparent;
+    gap: 1rem;
+    .setting {
+      display: flex;
+      gap: 1rem;
+      background-color: var(--bg-200);
+      padding: 1rem;
+      border-radius: 12px;
+      align-items: center;
+      transition: background-color 250ms ease-in-out;
+      cursor: pointer;
+      border: 1px solid var(--bg-300);
+      font-size: 1rem;
+      span {
+        display: grid;
+        place-content: center;
+        * {
+          transition: var(--transition-normal);
+          color: var(--accent-100);
+        }
+      }
+      &:hover {
+        background-color: var(--bg-300);
+      }
+      &:last-child {
+        border: 1px solid var(--red-100);
+        background-color: var(--bg-100);
+        span {
+          * {
+            color: var(--red-100);
+          }
+        }
+        &:hover {
+          background-color: var(--red-100);
+          span {
+            * {
+              color: var(--text-100);
+            }
+          }
+        }
+      }
+    }
+  }
+}
