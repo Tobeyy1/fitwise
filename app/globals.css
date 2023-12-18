@@ -23,6 +23,7 @@ body {
   --bg-100: #1e1e1e;
   --bg-200: #2d2d2d;
   --bg-300: #454545;
+  --red-100: rgb(154, 22, 22);
   --transition-normal: all 250ms ease-in-out;
 }
 
@@ -37,6 +38,7 @@ body {
   --bg-100: #ffffff;
   --bg-200: #e8e7e7;
   --bg-300: #cccccc;
+  --red-100: rgb(226, 125, 125);
   --transition-normal: all 250ms ease-in-out;
 }
 

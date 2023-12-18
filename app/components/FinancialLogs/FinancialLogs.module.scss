@@ -36,6 +36,9 @@
   span {
     font-size: clamp(2rem, 11vw, 4.5rem);
   }
+  p {
+    opacity: 0.5;
+  }
 }
 .log__container {
   display: flex;
@@ -60,7 +63,7 @@
       justify-content: space-between;
     }
     .bottom {
-      opacity: 0.75;
+      opacity: 0.5;
     }
     .amount {
       font-size: 125%;

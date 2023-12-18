@@ -8,7 +8,9 @@ type ShopItemProps = { link: string };
 const ShopItem: React.FC<ShopItemProps> = ({ link }) => {
   return (
     <Link href={link} className={classes.item}>
+      {" "}
       <div className={classes.image__container}>
+        <span className={classes.sold__out}>SOLD OUT</span>
         <Image
           src={TRAINER}
           alt="Item"

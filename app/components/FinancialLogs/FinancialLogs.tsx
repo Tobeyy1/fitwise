@@ -5,61 +5,61 @@ import { motion } from "framer-motion";
 const logs = [
   {
     username: "john_doe",
-    amount: 50.0,
+    amount: 5000.0,
     membership: "Basic Membership",
     date: "2023-01-10",
   },
   {
     username: "fit_guru",
-    amount: 75.0,
+    amount: 7500.0,
     membership: "Premium Membership",
     date: "2023-02-05",
   },
   {
     username: "health_enthusiast",
-    amount: 60.0,
+    amount: 6000.0,
     membership: "Standard Membership",
     date: "2023-03-12",
   },
   {
     username: "active_lifestyle",
-    amount: 90.0,
+    amount: 9000.0,
     membership: "Elite Membership",
     date: "2023-04-18",
   },
   {
     username: "wellness_warrior",
-    amount: 55.0,
+    amount: 5500.0,
     membership: "Basic Membership",
     date: "2023-05-22",
   },
   {
     username: "gym_buff",
-    amount: 80.0,
+    amount: 8000.0,
     membership: "Premium Membership",
     date: "2023-06-29",
   },
   {
     username: "cardio_king",
-    amount: 65.0,
+    amount: 6500.0,
     membership: "Standard Membership",
     date: "2023-07-05",
   },
   {
     username: "strength_queen",
-    amount: 100.0,
+    amount: 10000.0,
     membership: "Elite Membership",
     date: "2023-08-11",
   },
   {
     username: "fitness_fanatic",
-    amount: 70.0,
+    amount: 7000.0,
     membership: "Premium Membership",
     date: "2023-09-17",
   },
   {
     username: "exercise_enthusiast",
-    amount: 55.0,
+    amount: 5500.0,
     membership: "Basic Membership",
     date: "2023-10-23",
   },
@@ -84,7 +84,7 @@ const FinancialLogs: React.FC<Props> = ({ onClose }) => {
             <li key={index}>
               <div className={classes.top}>
                 <span className={classes.username}>{log.username} </span>{" "}
-                <span className={classes.amount}>{log.amount} </span>
+                <span className={classes.amount}>₦{log.amount} </span>
               </div>{" "}
               <div className={classes.bottom}>
                 <span className={classes.membership}>{log.membership} </span>{" "}

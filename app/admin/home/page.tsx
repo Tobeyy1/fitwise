@@ -13,6 +13,8 @@ import ClientDisplay from "@/app/components/ClientDisplay/ClientDisplay";
 import QRCodeScanner from "@/app/components/QRCodeScanner/QRCodeScanner";
 import CustomerComplaints from "@/app/components/CustomerComplaints/CustomerComplaints";
 import FinancialLogs from "@/app/components/FinancialLogs/FinancialLogs";
+import MembershipData from "@/app/components/MembershipData/MembershipData";
+import { IoIosSettings } from "react-icons/io";
 type ClientDetails = {
   firstName: string;
   lastName: string;
@@ -32,7 +34,10 @@ const Home = () => {
   const [showCustomerComplaints, setShowCustomerComplaints] =
     useState<boolean>(false);
   const [showLogs, setShowLogs] = useState<boolean>(false);
+  const [showMembershipData, setShowMembershipData] = useState<boolean>(false);
+
   const dispatch = useDispatch();
+
   const fetchClientData = () => {
     const clientDetails = {
       firstName: "John",
@@ -60,6 +65,7 @@ const Home = () => {
   const closeQRScannerHandler = () => {
     setIsScannerActive(false);
   };
+
   return (
     <div className={classes.container}>
       <AnimatePresence>
@@ -140,9 +146,26 @@ const Home = () => {
             }}
           />
         )}{" "}
+      </AnimatePresence>{" "}
+      <AnimatePresence>
+        {" "}
+        {showMembershipData && (
+          <MembershipData
+            onClose={() => {
+              setShowMembershipData(false);
+            }}
+          />
+        )}{" "}
       </AnimatePresence>
       <section className={classes.top__bar}>
-        <h2 className={classes.intro__text}>Welcome, Tobechukwu </h2>
+        <h2 className={classes.intro__text}>Welcome, Tobechukwu </h2>{" "}
+        <button
+          type="button"
+          className={classes.settings__cta}
+          title="Settings"
+        >
+          <IoIosSettings />{" "}
+        </button>
       </section>{" "}
       <section className={classes.body}>
         {" "}
@@ -172,7 +195,11 @@ const Home = () => {
         <ul className={classes.admin__functions}>
           {" "}
           <li>
-            <button type="button" className={classes.membership__data}>
+            <button
+              type="button"
+              className={classes.membership__data}
+              onClick={() => setShowMembershipData(true)}
+            >
               <span className={classes.icon}>
                 <CgDatabase />{" "}
               </span>{" "}

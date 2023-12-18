@@ -68,7 +68,7 @@ const CustomerComplaints: React.FC<Props> = ({ onClose }) => {
         className={classes.content__container}
       >
         <div className={classes.top__bar}>
-          Client Details{" "}
+          Complaints{" "}
           <button type="button" onClick={onClose}>
             <IoMdClose />{" "}
           </button>{" "}
