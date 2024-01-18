@@ -16,6 +16,7 @@ import FinancialLogs from "@/app/components/FinancialLogs/FinancialLogs";
 import MembershipData from "@/app/components/MembershipData/MembershipData";
 import { IoIosSettings } from "react-icons/io";
 import Settings from "./Settings";
+import EditPricing from "@/app/components/EditPricing/EditPricing";
 type ClientDetails = {
   firstName: string;
   lastName: string;
@@ -37,6 +38,8 @@ const Home = () => {
   const [showLogs, setShowLogs] = useState<boolean>(false);
   const [showMembershipData, setShowMembershipData] = useState<boolean>(false);
   const [showSettings, setShowSettings] = useState<boolean>(false);
+  const [showEditPricingModal, setShowEditPricingModal] =
+    useState<boolean>(false);
 
   const dispatch = useDispatch();
 
@@ -169,6 +172,16 @@ const Home = () => {
           />
         )}{" "}
       </AnimatePresence>
+      <AnimatePresence>
+        {" "}
+        {showEditPricingModal && (
+          <EditPricing
+            onClose={() => {
+              setShowEditPricingModal(false);
+            }}
+          />
+        )}{" "}
+      </AnimatePresence>
       <section className={classes.top__bar}>
         <h2 className={classes.intro__text}>Welcome, Tobechukwu </h2>{" "}
         <button
@@ -232,7 +245,11 @@ const Home = () => {
             </button>
           </li>{" "}
           <li>
-            <button type="button" className={classes.edit__pricing}>
+            <button
+              type="button"
+              className={classes.edit__pricing}
+              onClick={() => setShowEditPricingModal(true)}
+            >
               <span className={classes.icon}>
                 <GiMoneyStack />
               </span>{" "}

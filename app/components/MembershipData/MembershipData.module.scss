@@ -10,13 +10,16 @@
 .content__container {
   border: 1px solid var(--accent-100);
   border-radius: calc(12px + 1rem);
-  overflow: hidden;
+  overflow: auto;
   max-height: 100%;
   width: 100%;
   max-width: 500px;
   padding: 1rem;
   display: flex;
   flex-direction: column;
+  &::-webkit-scrollbar {
+    display: none;
+  }
 }
 .top__bar {
   width: 100%;
