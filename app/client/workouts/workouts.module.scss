@@ -1,2 +1,56 @@
 .container {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding-block: 1rem;
+  h2 {
+    text-align: center;
+    // padding-block: 1rem;
+  }
+}
+
+.setup__modal {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 1rem;
+  border-radius: calc(12px + 1rem);
+  width: 70%;
+  max-width: 500px;
+  border: 1px solid var(--accent-100);
+  h6 {
+    font-size: clamp(1.5rem, 2vw + 1px, 4rem);
+    text-align: center;
+  }
+  form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    label {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      p {
+        margin-left: 0.5rem;
+      }
+      select {
+        padding: 0.5rem;
+        border-radius: 12px;
+        border: 1px solid var(--accent-100);
+        background-color: var(--bg-100);
+        font-size: 100%;
+      }
+    }
+    button {
+      background-color: var(--accent-100);
+      width: 100%;
+      padding-block: 1rem;
+      border-radius: 12px;
+      border: none;
+    }
+  }
 }
