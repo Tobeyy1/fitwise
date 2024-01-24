@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import classes from "./Exercise.module.scss";
+import { motion } from "framer-motion";
 
 type Props = {
   restTime: number;
@@ -31,12 +32,17 @@ const RestTimer: React.FC<Props> = ({
   }, [restTime, setRestTime]);
 
   return (
-    <div className={classes.rest__timer}>
+    <motion.div
+      initial={{ scale: 0, opacity: 0 }}
+      animate={{ scale: 1, opacity: 1 }}
+      exit={{ scale: 0, opacity: 0 }}
+      className={classes.rest__timer}
+    >
       <h4>REST!!</h4>{" "}
       <p>
         <span>{restTime}</span> seconds
       </p>{" "}
-    </div>
+    </motion.div>
   );
 };
 

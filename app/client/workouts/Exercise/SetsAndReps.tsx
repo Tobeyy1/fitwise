@@ -2,6 +2,7 @@ import React from "react";
 import classes from "./Exercise.module.scss";
 import { numberToWords } from "@/app/helpers/helpers";
 import { HiOutlineInformationCircle } from "react-icons/hi";
+import { motion } from "framer-motion";
 
 type Props = {
   currentSet: number;
@@ -16,30 +17,59 @@ const SetsAndReps: React.FC<Props> = ({ currentSet, data, setRestTime }) => {
   };
   return (
     <>
-      <div className={classes.info}>
+      <motion.div
+        initial={{ opacity: 0, y: 100 }}
+        animate={{ opacity: 1, y: 0 }}
+        exit={{ opacity: 0, y: 100 }}
+        transition={{ delay: 0.1 }}
+        className={classes.info}
+      >
         <p>Use 70% of your 1 rep max</p>{" "}
         <span className={classes.icon}>
           <HiOutlineInformationCircle />{" "}
         </span>{" "}
-      </div>{" "}
-      <h6 className={classes.set__count}>
+      </motion.div>{" "}
+      <motion.h6
+        initial={{ opacity: 0, y: 100 }}
+        animate={{ opacity: 1, y: 0 }}
+        exit={{ opacity: 0, y: 100 }}
+        transition={{ delay: 0.2 }}
+        className={classes.set__count}
+      >
         <span>{numberToWords(currentSet + 1)}</span> of{" "}
         {numberToWords(data.length)} Sets
-      </h6>{" "}
-      <p className={classes.rep__count}>
+      </motion.h6>{" "}
+      <motion.p
+        initial={{ opacity: 0, y: 100 }}
+        animate={{ opacity: 1, y: 0 }}
+        exit={{ opacity: 0, y: 100 }}
+        transition={{ delay: 0.3 }}
+        className={classes.rep__count}
+      >
         <span>{data[currentSet]?.reps}</span> Reps
-      </p>{" "}
+      </motion.p>{" "}
       <div className={classes.cta__container}>
-        <button type="button" className={classes.back}>
+        <motion.button
+          initial={{ opacity: 0, y: 100 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: 100 }}
+          transition={{ delay: 0.4 }}
+          type="button"
+          className={classes.back}
+        >
           Go Back
-        </button>{" "}
-        <button
+        </motion.button>{" "}
+        <motion.button
+          initial={{ opacity: 0, y: 100 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: 100 }}
+          transition={{ delay: 0.5 }}
           type="button"
           className={classes.completed}
           onClick={completedHandler}
         >
           Completed
-        </button>{" "}
+        </motion.button>{" "}
       </div>{" "}
     </>
   );
