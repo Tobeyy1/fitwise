@@ -15,8 +15,8 @@ const Exercise: React.FC<Props> = ({ exercise, setCurrentExercise }) => {
   const [currentSet, setCurrentSet] = useState<number>(1);
   const [restTime, setRestTime] = useState<number>(0);
 
-  const onCompleted = () => {
-    if (currentSet - 1 === exercise.sets.length && restTime === 1) {
+  const onCompleted = (setValue: number) => {
+    if (setValue - 1 === exercise.sets.length) {
       setCurrentExercise((prev: number) => prev + 1);
     }
   };

@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import WorkoutSetup from "./WorkoutSetup/WorkoutSetup";
 import classes from "./workouts.module.scss";
 import Exercise from "./Exercise/Exercise";

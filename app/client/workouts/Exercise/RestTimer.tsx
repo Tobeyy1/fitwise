@@ -9,7 +9,7 @@ type Props = {
   currentSet: number;
   //   setCurrentExercise: React.Dispatch<React.SetStateAction<number>>;
 
-  onCompleted: () => void;
+  onCompleted: (value: number) => void;
 };
 
 const RestTimer: React.FC<Props> = ({
@@ -20,8 +20,13 @@ const RestTimer: React.FC<Props> = ({
   onCompleted,
 }) => {
   useEffect(() => {
-    setCurrentSet(currentSet++);
-    onCompleted();
+    if (restTime === 1) {
+      setCurrentSet((prev: number) => {
+        onCompleted(prev + 1);
+        return prev + 1;
+      });
+    }
+
     if (restTime > 0) {
       const timerInterval = setInterval(() => {
         setRestTime((prev: number) => prev - 1);
