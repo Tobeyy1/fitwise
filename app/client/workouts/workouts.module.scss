@@ -55,3 +55,36 @@
     }
   }
 }
+
+.complete__modal {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: calc(12px + 1rem);
+  border: 1px solid var(--accent-100);
+  padding: 1rem;
+
+  h2 {
+    text-transform: uppercase;
+  }
+
+  p {
+    text-align: center;
+  }
+
+  button {
+    width: 100%;
+    border: none;
+    border-radius: 12px;
+    background-color: var(--accent-100);
+    text-transform: uppercase;
+    letter-spacing: 5px;
+    padding: 1rem;
+  }
+}

@@ -1,40 +1,10 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import WorkoutSetup from "./WorkoutSetup/WorkoutSetup";
 import classes from "./workouts.module.scss";
 import Exercise from "./Exercise/Exercise";
 import { AnimatePresence } from "framer-motion";
-
-const workouts = {
-  membership: "Once-a-Week Membership",
-  workoutDate: "2024-01-22",
-  exercises: [
-    {
-      name: "Squats",
-      sets: [
-        { setNumber: 1, reps: 12, restTime: 6 },
-        { setNumber: 2, reps: 10, restTime: 4 },
-        { setNumber: 3, reps: 8, restTime: 6 },
-      ],
-    },
-    {
-      name: "Bench Press",
-      sets: [
-        { setNumber: 1, reps: 12, restTime: 4 },
-        { setNumber: 2, reps: 10, restTime: 6 },
-        { setNumber: 3, reps: 8, restTime: 4 },
-      ],
-    },
-    {
-      name: "Deadlifts",
-      sets: [
-        { setNumber: 1, reps: 12, restTime: 6 },
-        { setNumber: 2, reps: 10, restTime: 4 },
-        { setNumber: 3, reps: 8, restTime: 6 },
-      ],
-    },
-  ],
-};
+import { useSelector } from "react-redux";
 
 const Workouts = () => {
   const [setupDetails, setSetupDetails] = useState({
@@ -43,11 +13,27 @@ const Workouts = () => {
   });
   const [currentExercise, setCurrentExercise] = useState<number>(1);
 
-  const exerciseComponentArray = workouts.exercises.map(
+  //Data from Store
+  const workoutData = useSelector(
+    (state: any) => state.workoutData.workoutData
+  );
+
+  //Select Element Ref
+  const selectRef = useRef<HTMLSelectElement>(null);
+
+  //Putting the different exercise components in an array
+  const exerciseComponentArray = workoutData.exercises.map(
     (exercise: any, index: number) => (
       <Exercise
         key={index}
         exercise={exercise}
+        onCancel={() => {
+          setSetupDetails({
+            active: true,
+            trainingSplit: "",
+          });
+        }}
+        currentExercise={currentExercise}
         setCurrentExercise={setCurrentExercise}
       />
     )
@@ -67,6 +53,7 @@ const Workouts = () => {
                   name="trainingSplit"
                   id="trainingSplit"
                   title="Training Split"
+                  ref={selectRef}
                 >
                   <option value="one">Once a Week</option>
                   <option value="two">Two Times a Week</option>
@@ -76,13 +63,35 @@ const Workouts = () => {
               </label>
               <button
                 onClick={() => {
-                  setSetupDetails({ active: false, trainingSplit: "" });
+                  if (selectRef.current?.value) {
+                    setSetupDetails({
+                      active: false,
+                      trainingSplit: selectRef.current?.value,
+                    });
+                  }
                 }}
                 type="button"
               >
                 Start Workout
               </button>
             </form>
+          </div>
+        ) : currentExercise > workoutData.exercises.length ? (
+          <div className={classes.complete__modal}>
+            <h2> Congratulations!!</h2>{" "}
+            <p>You&apos;ve completed your workout for today</p>
+            <button
+              type="button"
+              onClick={() => {
+                setSetupDetails({
+                  active: true,
+                  trainingSplit: "",
+                });
+                setCurrentExercise(1);
+              }}
+            >
+              Redo Workout
+            </button>
           </div>
         ) : (
           exerciseComponentArray[currentExercise - 1]

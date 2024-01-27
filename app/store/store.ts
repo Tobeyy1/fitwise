@@ -1,6 +1,37 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { configureStore, combineReducers } from "@reduxjs/toolkit";
 
+const DUMMY_DATA = {
+  membership: "Once-a-Week Membership",
+  workoutDate: "2024-01-22",
+  exercises: [
+    {
+      name: "Squats",
+      sets: [
+        { setNumber: 1, reps: 12, restTime: 6 },
+        { setNumber: 2, reps: 10, restTime: 4 },
+        { setNumber: 3, reps: 8, restTime: 6 },
+      ],
+    },
+    {
+      name: "Bench Press",
+      sets: [
+        { setNumber: 1, reps: 12, restTime: 4 },
+        { setNumber: 2, reps: 10, restTime: 6 },
+        { setNumber: 3, reps: 8, restTime: 4 },
+      ],
+    },
+    {
+      name: "Deadlifts",
+      sets: [
+        { setNumber: 1, reps: 12, restTime: 6 },
+        { setNumber: 2, reps: 10, restTime: 4 },
+        { setNumber: 3, reps: 8, restTime: 6 },
+      ],
+    },
+  ],
+};
+
 interface ThemeState {
   theme: string;
 }
@@ -10,6 +41,28 @@ interface QRCodeState {
 interface IsLoadingState {
   isLoading: boolean;
 }
+
+type ExerciseSet = {
+  setNumber: number;
+  reps: number;
+  restTime: number;
+};
+
+type Exercise = {
+  name: string;
+  sets: ExerciseSet[];
+};
+
+type WorkoutData = {
+  membership: string;
+  workoutDate: string;
+  exercises: Exercise[];
+};
+
+interface WorkoutDataState {
+  workoutData: WorkoutData;
+}
+
 const themeSlice = createSlice({
   name: "theme",
   initialState: {
@@ -44,11 +97,24 @@ const isLoadingSlice = createSlice({
   },
 });
 
+const workoutDataSlice = createSlice({
+  name: "workoutData",
+  initialState: {
+    workoutData: DUMMY_DATA,
+  } as WorkoutDataState,
+  reducers: {
+    setWorkoutData: (state, action: PayloadAction<WorkoutData>) => {
+      state.workoutData = action.payload;
+    },
+  },
+});
+
 const rootReducer = combineReducers({
   //   playersData: playersDataSlice.reducer,
   theme: themeSlice.reducer,
   qrCode: qrCodeSlice.reducer,
   isLoading: isLoadingSlice.reducer,
+  workoutData: workoutDataSlice.reducer,
 });
 
 const store = configureStore({
@@ -58,4 +124,5 @@ const store = configureStore({
 export const themeActions = themeSlice.actions;
 export const qrCodeActions = qrCodeSlice.actions;
 export const isLoadingActions = isLoadingSlice.actions;
+export const workoutDataActions = workoutDataSlice.actions;
 export default store;

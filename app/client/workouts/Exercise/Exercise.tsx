@@ -7,11 +7,19 @@ import { motion } from "framer-motion";
 
 type Props = {
   exercise: ExerciseType;
+  onCancel: () => void;
+  currentExercise: number;
   setCurrentExercise: React.Dispatch<React.SetStateAction<number>>;
 };
 type ExerciseType = { name: string; sets: setDataType[] };
 type setDataType = { setNumber: number; reps: number; restTime: number };
-const Exercise: React.FC<Props> = ({ exercise, setCurrentExercise }) => {
+
+const Exercise: React.FC<Props> = ({
+  exercise,
+  currentExercise,
+  setCurrentExercise,
+  onCancel,
+}) => {
   const [currentSet, setCurrentSet] = useState<number>(1);
   const [restTime, setRestTime] = useState<number>(0);
 
@@ -19,6 +27,18 @@ const Exercise: React.FC<Props> = ({ exercise, setCurrentExercise }) => {
     if (setValue - 1 === exercise.sets.length) {
       setCurrentExercise((prev: number) => prev + 1);
     }
+  };
+
+  const onPrevious = () => {
+    setCurrentSet((prev: number) => {
+      if (prev - 1 === 0 && currentExercise > 1) {
+        setCurrentExercise((prev: number) => prev - 1);
+      }
+      if (currentExercise === 1 && prev - 1 === 0) {
+        return prev;
+      }
+      return prev - 1;
+    });
   };
 
   return (
@@ -34,6 +54,7 @@ const Exercise: React.FC<Props> = ({ exercise, setCurrentExercise }) => {
       <AnimatePresence mode="sync">
         {restTime === 0 ? (
           <SetsAndReps
+            onPrevious={onPrevious}
             currentSet={currentSet - 1}
             data={exercise.sets}
             setRestTime={(time) => setRestTime(time)}
@@ -48,7 +69,7 @@ const Exercise: React.FC<Props> = ({ exercise, setCurrentExercise }) => {
           />
         )}
       </AnimatePresence>
-      <button type="button" className={classes.cancel}>
+      <button type="button" onClick={onCancel} className={classes.cancel}>
         Cancel Workout
       </button>
     </motion.div>

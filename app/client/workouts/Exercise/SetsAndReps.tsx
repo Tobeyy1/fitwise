@@ -8,13 +8,20 @@ type Props = {
   currentSet: number;
   data: setDataType[];
   setRestTime: (value: number) => void;
+  onPrevious: () => void;
 };
 type setDataType = { setNumber: number; reps: number; restTime: number };
 
-const SetsAndReps: React.FC<Props> = ({ currentSet, data, setRestTime }) => {
+const SetsAndReps: React.FC<Props> = ({
+  currentSet,
+  data,
+  setRestTime,
+  onPrevious,
+}) => {
   const completedHandler = () => {
     setRestTime(data[currentSet].restTime);
   };
+
   return (
     <>
       <motion.div
@@ -56,6 +63,7 @@ const SetsAndReps: React.FC<Props> = ({ currentSet, data, setRestTime }) => {
           transition={{ delay: 0.4 }}
           type="button"
           className={classes.back}
+          onClick={onPrevious}
         >
           Go Back
         </motion.button>{" "}
